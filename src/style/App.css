@@ -24,7 +24,7 @@
 
 @media only screen and (max-width: 900px) {
   .App {
-    height: calc(100vh - 3px);
+    height: calc(100vh - 2px);
     width: 100vw;
     background: #0016ff;
     background: linear-gradient(348deg, #0016ff 0%, #9eafff 100%);

@@ -1,0 +1,202 @@
+.Login {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.Login .head {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login .head h1 {
+  font-size: 3rem;
+  margin-bottom: 0.1rem;
+}
+
+.Login form {
+  min-width: 440px;
+  padding: 3rem;
+  background-color: #0a0b44;
+  width: 80%;
+  margin: 2rem;
+}
+
+.Login form h1 {
+  color: white;
+  text-align: center;
+}
+
+.Login form .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Login form .container .input {
+  max-width: 420px;
+  min-width: 323px;
+  width: 90%;
+  height: 4rem;
+  background-color: white;
+  margin-bottom: 1rem;
+  border-radius: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Login form .container .input img {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 5%;
+  margin-right: 1rem;
+}
+
+.Login form .container .input input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 100%;
+  border-radius: 2rem;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.Login form .container .input input[type="text"],
+.Login form .container .input input[type="password"],
+.Login form .container .input textarea,
+.Login form .container .input select {
+  outline: none;
+}
+
+.Login form .btns {
+  max-width: 420px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 360px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  margin: 1rem;
+}
+
+.Login form .btns button {
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  padding: 1.5rem;
+  width: 10rem;
+  border-radius: 1rem;
+  background-color: #ff5252;
+}
+
+.Login form .btns button:nth-of-type(2n) {
+  background-color: rgba(106, 42, 255, 0.877);
+}
+
+.Login form .btns button:hover {
+  -webkit-filter: brightness(130%);
+          filter: brightness(130%);
+  cursor: pointer;
+}
+
+.Login form .fb {
+  margin-top: 1rem;
+  border-top: 1px solid grey;
+  height: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Login form .fb .fb-button {
+  margin-top: 2rem;
+  background-color: #3961ba;
+  width: 80%;
+  min-width: 300px;
+  height: 4rem;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+}
+
+.Login form .fb .fb-button img {
+  height: 60%;
+  margin-left: 1rem;
+}
+
+.Login form .fb .fb-button p {
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 240px;
+}
+
+.Login form .fb .fb-button:hover {
+  -webkit-filter: brightness(130%);
+          filter: brightness(130%);
+  cursor: pointer;
+}
+/*# sourceMappingURL=Login.css.map */
