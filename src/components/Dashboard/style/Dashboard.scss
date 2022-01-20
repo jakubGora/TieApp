@@ -1,0 +1,112 @@
+$base-color: #6174ff;
+$base-bg-color: #f5f5f5;
+
+.Dashboard {
+  flex-grow: 1;
+
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 0;
+  height: 92%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .head {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 90%;
+    flex-grow: 1;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.1rem;
+    }
+    p {
+      margin-top: 0.2rem;
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.671);
+      font-weight: 400;
+      margin-left: 0.2rem;
+    }
+  }
+  .mainInfo {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-grow: 3;
+    color: white;
+    justify-content: center;
+    align-items: flex-start;
+    border-top: 2px solid rgba(233, 233, 233, 0.623);
+    .text {
+      padding: 0.5rem;
+      padding-left: 2rem;
+      p {
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.671);
+        font-weight: 400;
+        margin-left: 0.2rem;
+      }
+      h2 {
+        margin: 0rem;
+        padding: 0;
+        font-size: 4rem;
+      }
+    }
+  }
+  .infoList {
+    overflow-y: scroll;
+    background-color: $base-bg-color;
+
+    flex-grow: 10;
+    border-top-right-radius: 4rem;
+    border-top-left-radius: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      min-width: 10rem;
+      padding-top: 0rem;
+      background-color: rgb(255, 255, 255);
+      flex-grow: 1;
+      margin: 1rem;
+      border: 2.5px solid $base-color;
+      border-radius: 1.7rem;
+      font-size: 1.7rem;
+      box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
+      color: $base-color;
+      cursor: pointer;
+      strong {
+        font-size: 2rem;
+      }
+    }
+    .info.main {
+      background-color: $base-color;
+      color: white;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .Dashboard {
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
+}

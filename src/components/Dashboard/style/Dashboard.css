@@ -1,0 +1,166 @@
+.Dashboard {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 0;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Dashboard .head {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+  width: 90%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.Dashboard .head h1 {
+  font-size: 3rem;
+  margin-bottom: 0.1rem;
+}
+
+.Dashboard .head p {
+  margin-top: 0.2rem;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.671);
+  font-weight: 400;
+  margin-left: 0.2rem;
+}
+
+.Dashboard .mainInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border-top: 2px solid rgba(233, 233, 233, 0.623);
+}
+
+.Dashboard .mainInfo .text {
+  padding: 0.5rem;
+  padding-left: 2rem;
+}
+
+.Dashboard .mainInfo .text p {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.671);
+  font-weight: 400;
+  margin-left: 0.2rem;
+}
+
+.Dashboard .mainInfo .text h2 {
+  margin: 0rem;
+  padding: 0;
+  font-size: 4rem;
+}
+
+.Dashboard .infoList {
+  overflow-y: scroll;
+  background-color: #f5f5f5;
+  -webkit-box-flex: 10;
+      -ms-flex-positive: 10;
+          flex-grow: 10;
+  border-top-right-radius: 4rem;
+  border-top-left-radius: 0rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+}
+
+.Dashboard .infoList .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1.2rem;
+  min-width: 10rem;
+  padding-top: 0rem;
+  background-color: white;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 1rem;
+  border: 2.5px solid #6174ff;
+  border-radius: 1.7rem;
+  font-size: 1.7rem;
+  -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
+          box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
+  color: #6174ff;
+  cursor: pointer;
+}
+
+.Dashboard .infoList .info strong {
+  font-size: 2rem;
+}
+
+.Dashboard .infoList .info.main {
+  background-color: #6174ff;
+  color: white;
+}
+
+.Dashboard ::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media only screen and (max-width: 900px) {
+  .Dashboard {
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
+}
+/*# sourceMappingURL=Dashboard.css.map */

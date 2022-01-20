@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AddExpense from "./components/AddExpense/AddExpense";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Nav from "./components/Nav/Nav";
+import "./style/App.css";
 
 function App() {
+  const [window, setWindow] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {window == 0 ? <Dashboard /> : ""}
+      {window == 1 ? <AddExpense /> : ""}
+
+      <Nav window={window} setWindow={setWindow} />
     </div>
   );
 }
