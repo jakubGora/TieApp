@@ -1,3 +1,5 @@
+@import "../../../colors";
+
 .AddExpense {
   flex-grow: 1;
   background-color: rgba(241, 241, 241, 0);
@@ -12,27 +14,52 @@
   .top {
     width: 100%;
     display: flex;
+    color: white;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    background-color: $base-color;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
-  .cat-list {
+  .infoList {
+    overflow-y: scroll;
+    background-color: $base-bg-color;
+
+    flex-grow: 10;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
-    overflow-y: scroll;
-    .cat {
-      background-color: rgb(212, 212, 212);
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.1rem;
+      min-width: 10rem;
+      padding-top: 0rem;
+      background-color: rgb(255, 255, 255);
       flex-grow: 1;
       margin: 1rem;
-      width: 10rem;
-      height: 10rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      border: 2.5px solid $base-color;
+      border-radius: 1.7rem;
+      font-size: 1.7rem;
+      box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
+      color: $base-color;
+      cursor: pointer;
+      svg {
+        margin-top: 2rem;
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+
+    .info:hover {
+      background-color: $base-color;
+      color: white;
     }
   }
 }

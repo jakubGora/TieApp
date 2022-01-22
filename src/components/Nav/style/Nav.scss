@@ -1,4 +1,4 @@
-$base-color: #6174ff;
+@import "../../../colors";
 
 .Nav {
   display: flex;
@@ -15,7 +15,7 @@ $base-color: #6174ff;
   justify-content: space-around;
   .button {
     height: 100%;
-    flex-grow: 2;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,14 +29,14 @@ $base-color: #6174ff;
   .button:hover {
     background-color: rgba(0, 0, 0, 0.075);
   }
-  .button:nth-of-type(2n) {
+  .button:nth-of-type(3) {
     background-color: $base-color;
     border-radius: 1rem;
-    flex-grow: 1;
-    transform: scale(120%) translateY(-0.3rem);
+
+    transform: scale(110%) translateY(-0.3rem);
   }
-  .button:nth-of-type(2n):hover {
-    background-color: #5064ff;
+  .button:nth-of-type(3):hover {
+    filter: brightness(90%);
   }
 }
 @media only screen and (max-width: 900px) {

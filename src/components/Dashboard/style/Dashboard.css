@@ -65,6 +65,7 @@
       -ms-flex-align: start;
           align-items: flex-start;
   border-top: 2px solid rgba(233, 233, 233, 0.623);
+  border-top-right-radius: 5rem;
 }
 
 .Dashboard .mainInfo .text {
@@ -135,12 +136,12 @@
       -ms-flex-positive: 1;
           flex-grow: 1;
   margin: 1rem;
-  border: 2.5px solid #6174ff;
+  border: 2.5px solid #7c4dfd;
   border-radius: 1.7rem;
   font-size: 1.7rem;
   -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
           box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
-  color: #6174ff;
+  color: #7c4dfd;
   cursor: pointer;
 }
 
@@ -149,7 +150,7 @@
 }
 
 .Dashboard .infoList .info.main {
-  background-color: #6174ff;
+  background-color: #7c4dfd;
   color: white;
 }
 

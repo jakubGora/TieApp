@@ -14,7 +14,7 @@ function App() {
       {window == 5 ? <Login window={window} setWindow={setWindow} /> : ""}
       {window == 6 ? <Register window={window} setWindow={setWindow} /> : ""}
       {window == 0 ? <Dashboard /> : ""}
-      {window == 1 ? <AddExpense /> : ""}
+      {window == 2 ? <AddExpense /> : ""}
       {window < 5 ? <Nav window={window} setWindow={setWindow} /> : ""}
     </div>
   );

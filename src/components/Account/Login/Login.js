@@ -26,7 +26,7 @@ function Login({ window, setWindow }) {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                setWindow(5);
+                setWindow(0);
               }}
               type="submit"
             >
