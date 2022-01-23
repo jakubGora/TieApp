@@ -3,7 +3,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { getAuth, connectAuthEmulator, RecaptchaVerifier } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,7 +23,8 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase
 
 const auth = getAuth();
+
 export const fireAuth = auth;
 const analytics = getAnalytics(app);
-
+export const recaptchaVerifier = RecaptchaVerifier;
 export default firebase;

@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import loginImg from "../../../img/user.png";
 import passImg from "../../../img/padlock.png";
 import fbImg from "../../../img/facebook-social-logo.png";
 import "./style/Login.css";
 import firebase, { fireAuth } from "../../../firebase";
-import StyleFirebaseUi from "react-firebaseui/StyledFirebaseAuth";
+import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
+import StyleFirebaseUi from "react-firebaseui/StyledFirebaseAuth";
+import logo from "../../../img/logoTieApp.png";
 function Login({ window, setWindow }) {
   var uiConfig = {
     callbacks: {
@@ -20,8 +22,19 @@ function Login({ window, setWindow }) {
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+      },
+      {
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        recaptchaParameters: {
+          type: "image", // 'audio'
+          size: "normal", // 'invisible' or 'compact'
+          badge: "bottomleft", //' bottomright' or 'inline' applies to invisible.
+        },
+        defaultCountry: "PL",
+      },
     ],
     // Terms of service url.
     tosUrl: "<your-tos-url>",
@@ -31,8 +44,10 @@ function Login({ window, setWindow }) {
   return (
     <div className="Login">
       <div className="head">
-        <h1>Tie App</h1>{" "}
+        <img src={logo} alt="logo" />
+        <h1>Tie App</h1>
       </div>
+      <h2>Sign in</h2>{" "}
       <StyleFirebaseUi uiConfig={uiConfig} firebaseAuth={fireAuth} />
     </div>
   );

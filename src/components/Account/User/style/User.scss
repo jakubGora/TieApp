@@ -33,9 +33,14 @@
     color: white;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     flex-grow: 1;
     div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       h2 {
         margin-bottom: 0rem;
         text-align: center;
@@ -46,9 +51,12 @@
         text-align: center;
       }
       img {
+        display: flex;
+
         border-radius: 50%;
         margin: 2rem;
-        width: 10rem;
+        width: 12rem;
+        border: 5px solid rgb(255, 255, 255);
       }
       button {
         border: none;
@@ -65,6 +73,7 @@
       }
       button:last-of-type {
         color: red;
+        padding-bottom: 2rem;
       }
       button:last-of-type:hover {
         color: white;
