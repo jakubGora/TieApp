@@ -1,11 +1,15 @@
-// Import the functions you need from the SDKs you need
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyDG_J-kaLylAI4Wk1YDuYUEMBCNeugnmGE",
   authDomain: "tieapp-2281e.firebaseapp.com",
@@ -15,8 +19,11 @@ const firebaseConfig = {
   appId: "1:15121582945:web:ec71befcf6aff42877d320",
   measurementId: "G-C34NCT43JX",
 };
-import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+const app = initializeApp(firebaseConfig);
+// Initialize Firebase
 
 const auth = getAuth();
-const app = initializeApp(firebaseConfig);
+export const fireAuth = auth;
 const analytics = getAnalytics(app);
+
+export default firebase;

@@ -1,0 +1,75 @@
+@import "../../../../colors";
+
+.User {
+  flex-grow: 1;
+  background-color: rgba(241, 241, 241, 0);
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  height: 92%;
+  .email-ver {
+    width: 100%;
+    background-color: rgb(255, 119, 119);
+    border: red solid 1px;
+    color: white;
+    padding: 0.2rem;
+    text-align: center;
+  }
+  .top {
+    width: 100%;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: $base-color;
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    flex-grow: 1;
+    div {
+      h2 {
+        margin-bottom: 0rem;
+        text-align: center;
+      }
+      h3 {
+        font-size: 0.7rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      img {
+        border-radius: 50%;
+        margin: 2rem;
+        width: 10rem;
+      }
+      button {
+        border: none;
+        width: 100%;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0);
+        color: white;
+        font-size: 1.5rem;
+        border-top: 2px solid white;
+      }
+      button:hover {
+        background-color: rgba(0, 0, 0, 0.192);
+        cursor: pointer;
+      }
+      button:last-of-type {
+        color: red;
+      }
+      button:last-of-type:hover {
+        color: white;
+        background-color: red;
+      }
+    }
+  }
+}

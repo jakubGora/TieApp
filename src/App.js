@@ -5,17 +5,38 @@ import Nav from "./components/Nav/Nav";
 import Login from "./components/Account/Login/Login";
 import Register from "./components/Account/Register/Register";
 import "./style/App.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import User from "./components/Account/User/User";
 
 function App() {
-  const [window, setWindow] = useState(6);
+  const auth = getAuth();
+  const [window, setWindow] = useState(0);
+  const [isSignIn, setIsSignIn] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+
+      setIsSignIn(true);
+    } else {
+      setIsSignIn(false);
+    }
+  });
 
   return (
     <div className="App">
-      {window == 5 ? <Login window={window} setWindow={setWindow} /> : ""}
-      {window == 6 ? <Register window={window} setWindow={setWindow} /> : ""}
-      {window == 0 ? <Dashboard /> : ""}
-      {window == 2 ? <AddExpense /> : ""}
-      {window < 5 ? <Nav window={window} setWindow={setWindow} /> : ""}
+      {!isSignIn ? <Login /> : ""}
+
+      {isSignIn && window == 0 ? <Dashboard /> : ""}
+      {isSignIn && window == 2 ? <AddExpense /> : ""}
+      {isSignIn && window == 4 ? <User /> : ""}
+      {isSignIn && window <= 5 ? (
+        <Nav window={window} setWindow={setWindow} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
