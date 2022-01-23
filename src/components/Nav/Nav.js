@@ -26,7 +26,7 @@ function Nav({ window, setWindow }) {
       </div>
       <div className="button" onClick={() => setWindow(3)}>
         <img src={window == 3 ? history1 : history} alt="home" />
-        History
+        Family
       </div>
       <div className="button" onClick={() => setWindow(4)}>
         <img src={window == 4 ? user1 : user} alt="home" />

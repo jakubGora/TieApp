@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, connectAuthEmulator, RecaptchaVerifier } from "firebase/auth";
@@ -23,7 +24,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase
 
 const auth = getAuth();
-
+export const db = getFirestore();
 export const fireAuth = auth;
 const analytics = getAnalytics(app);
 export const recaptchaVerifier = RecaptchaVerifier;

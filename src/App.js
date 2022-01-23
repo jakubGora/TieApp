@@ -7,6 +7,7 @@ import Register from "./components/Account/Register/Register";
 import "./style/App.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import User from "./components/Account/User/User";
+import Family from "./components/Family/Family";
 
 function App() {
   const auth = getAuth();
@@ -31,6 +32,7 @@ function App() {
 
       {isSignIn && window == 0 ? <Dashboard /> : ""}
       {isSignIn && window == 2 ? <AddExpense /> : ""}
+      {isSignIn && window == 3 ? <Family /> : ""}
       {isSignIn && window == 4 ? <User /> : ""}
       {isSignIn && window <= 5 ? (
         <Nav window={window} setWindow={setWindow} />
