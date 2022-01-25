@@ -20,17 +20,16 @@
     font-size: 2.5rem;
     font-weight: 600;
     width: 90%;
-    flex-grow: 1;
+
     h1 {
-      font-size: 3rem;
+      font-size: 2rem;
       margin-bottom: 0.1rem;
     }
     p {
       margin-top: 0.2rem;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: rgba(255, 255, 255, 0.671);
       font-weight: 400;
-      margin-left: 0.2rem;
     }
   }
   .mainInfo {
@@ -45,22 +44,21 @@
     border-top-right-radius: 5rem;
     .text {
       padding: 0.5rem;
-      padding-left: 2rem;
+      margin-left: 1rem;
       p {
         margin-top: 0.2rem;
         margin-bottom: 0.2rem;
-        font-size: 1.3rem;
+        font-size: 1rem;
         color: rgba(255, 255, 255, 0.671);
         font-weight: 400;
-        margin-left: 0.2rem;
       }
       h2 {
         margin: 0rem;
         padding: 0;
-        font-size: 4rem;
+        font-size: 2rem;
         s {
           text-decoration: none;
-          font-size: 2.5rem;
+          font-size: 1.5rem;
           font-weight: 400;
         }
       }
@@ -70,34 +68,34 @@
     overflow-y: scroll;
     background-color: $base-bg-color;
 
-    flex-grow: 10;
-    border-top-right-radius: 4rem;
-    border-top-left-radius: 0rem;
+    height: 12rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
     display: flex;
+
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    overflow-x: scroll;
+    width: 100vw;
     padding: 1rem;
     .info {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 1.2rem;
-      min-width: 10rem;
-      padding-top: 0rem;
+      justify-content: flex-start;
+      padding: 1rem;
+
+      min-width: 8rem;
       background-color: rgb(255, 255, 255);
       flex-grow: 1;
-      margin: 1rem;
+      margin: 0.5rem;
       border: 2.5px solid $base-color;
       border-radius: 1.7rem;
-      font-size: 1.7rem;
+      font-size: 1.2rem;
       box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
       color: $base-color;
       cursor: pointer;
       strong {
-        font-size: 2rem;
+        font-size: 1.3rem;
       }
     }
     .info.main {
@@ -105,6 +103,67 @@
       color: white;
     }
   }
+
+  .graph {
+    flex-grow: 80;
+    color: white;
+    width: 100%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .content {
+      width: 90%;
+      height: 80%;
+      border-bottom: 1px solid black;
+      border-radius: 1rem;
+      box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.253);
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-around;
+      .bar {
+        height: 40%;
+        width: 4rem;
+        background-color: blueviolet;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all ease 1s;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        box-shadow: 1rem -0.1rem 0.5rem $base-color;
+        z-index: 5;
+        p {
+          margin: 0;
+          transform: translateY(-1rem);
+        }
+      }
+      .bar:nth-of-type(1) {
+        background-color: $graph-color1;
+      }
+      .bar:nth-of-type(2) {
+        background-color: $graph-color3;
+      }
+    }
+    .line {
+      width: 90%;
+      box-shadow: 0rem -0.5rem 0.7rem black;
+      height: 2px;
+    }
+    .labels {
+      width: 90%;
+      height: 10%;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 0px;
   }

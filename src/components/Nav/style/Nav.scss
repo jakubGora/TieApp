@@ -5,7 +5,7 @@
   width: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: 0rem -1rem 1rem rgba(196, 196, 196, 0.178);
-  height: 8vh;
+  height: 6vh;
   min-height: 4rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -15,15 +15,16 @@
   justify-content: space-around;
   .button {
     height: 100%;
-    flex-grow: 1;
+    width: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     cursor: pointer;
     img {
-      width: 2.4rem;
+      width: 1.8rem;
+      margin-bottom: 0.4rem;
     }
   }
   .button:hover {

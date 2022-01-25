@@ -18,6 +18,7 @@
           align-items: center;
   z-index: 1;
   height: 92%;
+  overflow-y: scroll;
 }
 
 .History .top {
@@ -32,7 +33,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #7c4dfd;
 }
 
 .History .list {
@@ -50,6 +50,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow-x: scroll;
+}
+
+.History .list .scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .History .list .elem {
@@ -59,14 +66,14 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: rgba(255, 255, 255, 0.863);
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
-  border-bottom: 1px solid white;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.397);
+  padding-right: 1rem;
 }
 
 .History .list .elem .box {
@@ -74,9 +81,40 @@
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.171);
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 1rem;
+}
+
+.History .list .elem .box h3 {
+  font-size: 1rem;
+}
+
+.History .list .elem .box h2 {
+  font-size: 1.2rem;
 }
 
 .History .list .elem .box:last-of-type {
   width: 10vw;
+  border-right: none;
+}
+
+.History .list .elem:first-of-type {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.596);
+  -webkit-box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.233);
+          box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.233);
+}
+
+.History .list .elem:last-of-type {
+  border: none;
 }
 /*# sourceMappingURL=History.css.map */

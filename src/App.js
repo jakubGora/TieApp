@@ -52,6 +52,7 @@ function App() {
                 category: doc.data().category,
                 sum: doc.data().sum,
                 time: doc.data().time,
+                id: doc.id,
               },
             ]);
           }
@@ -64,7 +65,7 @@ function App() {
       {!isSignIn ? <Login /> : ""}
 
       {isSignIn && window == 0 ? (
-        <Dashboard expenses={expenses} window={window} />
+        <Dashboard expenses={expenses} window={window} fam={fam} />
       ) : (
         ""
       )}
@@ -74,7 +75,11 @@ function App() {
         ""
       )}
       {isSignIn && window == 2 ? <AddExpense /> : ""}
-      {isSignIn && window == 3 ? <History expenses={expenses} /> : ""}
+      {isSignIn && window == 3 ? (
+        <History expenses={expenses} window={window} setWindow={setWindow} />
+      ) : (
+        ""
+      )}
       {isSignIn && window == 4 ? <User /> : ""}
       {isSignIn && window <= 5 ? (
         <Nav window={window} setWindow={setWindow} />
