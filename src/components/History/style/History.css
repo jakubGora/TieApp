@@ -108,7 +108,7 @@
   border-right: none;
 }
 
-.History .list .elem:first-of-type {
+.History .list .elem.head {
   border-bottom: 2px solid rgba(255, 255, 255, 0.596);
   -webkit-box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.233);
           box-shadow: 0rem 0.2rem 1rem rgba(0, 0, 0, 0.233);

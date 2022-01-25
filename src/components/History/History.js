@@ -18,7 +18,7 @@ function History({ expenses, window, setWindow }) {
         <h1>Twoja historia</h1>
       </div>
       <div className="list">
-        <div className="elem">
+        <div className="elem head">
           <div className="box">
             <h2>Kategoria</h2>
           </div>

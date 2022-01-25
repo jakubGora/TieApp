@@ -45,12 +45,16 @@
     .text {
       padding: 0.5rem;
       margin-left: 1rem;
-      p {
+      select {
         margin-top: 0.2rem;
         margin-bottom: 0.2rem;
         font-size: 1rem;
-        color: rgba(255, 255, 255, 0.671);
+        background-color: rgba(0, 0, 0, 0);
+        color: rgb(218, 218, 218);
         font-weight: 400;
+        option {
+          background-color: rgba(0, 0, 0, 0.795);
+        }
       }
       h2 {
         margin: 0rem;
@@ -130,7 +134,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         transition: all ease 1s;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
@@ -138,6 +142,8 @@
         z-index: 5;
         p {
           margin: 0;
+          font-size: 1.5rem;
+          font-weight: 500;
           transform: translateY(-1rem);
         }
       }
@@ -155,6 +161,7 @@
     }
     .labels {
       width: 90%;
+      font-weight: 500;
       height: 10%;
       font-size: 1rem;
       display: flex;

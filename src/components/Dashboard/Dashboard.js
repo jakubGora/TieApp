@@ -11,6 +11,8 @@ import {
 import { db } from "../../firebase";
 import { getAuth } from "firebase/auth";
 function Dashboard({ expenses, window, fam }) {
+  const nowMonth = new Date().getMonth();
+  const nowYear = new Date().getYear();
   const [zakupy, setZakupy] = useState(0);
   const [chemia, setChemia] = useState(0);
   const [ubrania, setUbrania] = useState(0);
@@ -19,16 +21,46 @@ function Dashboard({ expenses, window, fam }) {
   const [userSum, setUserSum] = useState(0);
   const [sum, setSum] = useState(0);
   const [cat, setCat] = useState();
+  const [months, setMonths] = useState([]);
+  const [currentMonth, setCurrentM] = useState({
+    month: nowMonth + 1,
+    year: nowYear + 1900,
+  });
   const user = getAuth().currentUser;
+  const monthNames = [
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień",
+  ];
 
   const getExpensesSum = (email) => {
     let sumExp = 0;
+
     expenses.map((ex) => {
-      if (ex.email == email) {
+      let monthA = new Date(
+        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+      ).getMonth();
+      let year = new Date(
+        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+      ).getYear();
+      if (
+        ex.email == email &&
+        monthA + 1 === currentMonth.month &&
+        year + 1900 === currentMonth.year
+      ) {
         if (ex.category == cat || cat == null) sumExp += ex.sum;
       }
     });
-    console.log(sumExp);
+
     return [Math.round((sumExp * 100) / sum), sumExp];
   };
 
@@ -41,17 +73,27 @@ function Dashboard({ expenses, window, fam }) {
     setSum(0);
     setUserSum(0);
     var now = new Date();
-
+    setMonths([]);
     expenses.map((ex) => {
-      let date = new Date(
+      let monthA = new Date(
         ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
       ).getMonth();
+      let year = new Date(
+        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+      ).getYear();
 
-      if (date == now.getMonth()) {
+      setMonths((months) => [
+        ...months,
+        { month: monthA + 1, year: year + 1900 },
+      ]);
+      console.log(monthA + 1, currentMonth.month);
+      if (
+        monthA + 1 == currentMonth.month &&
+        year + 1900 === currentMonth.year
+      ) {
         if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
         setSum((sum) => sum + ex.sum);
 
-        console.log(sum);
         switch (ex.category) {
           case "Zakupy":
             if (ex.email == user.email) setZakupy((zakupy) => zakupy + ex.sum);
@@ -81,7 +123,13 @@ function Dashboard({ expenses, window, fam }) {
         }
       }
     });
-  }, [window]);
+
+    setMonths((months) => [
+      ...new Map(
+        months.map((item) => [item["month"] && item["year"], item])
+      ).values(),
+    ]);
+  }, [window, currentMonth]);
 
   return (
     <div className="Dashboard">
@@ -91,8 +139,18 @@ function Dashboard({ expenses, window, fam }) {
       </div>
       <div onClick={() => setCat(null)} className="mainInfo">
         <div className="text">
-          <p>01.01 - dzisiaj:</p>
-
+          <select
+            onChange={(e) => {
+              setCurrentM(months[e.target.value]);
+              console.log(currentMonth);
+            }}
+          >
+            {months.map((a, i) => (
+              <option onClickCapture={() => console.log("asd")} value={i}>
+                {monthNames[a.month - 1] + " " + a.year}
+              </option>
+            ))}
+          </select>
           <h2>
             {userSum} zł <s>/ {sum} zł</s>
           </h2>
