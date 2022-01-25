@@ -1,0 +1,207 @@
+.Statistics {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  background-color: rgba(241, 241, 241, 0);
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+  height: 92%;
+}
+
+.Statistics .top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #7c4dfd;
+}
+
+.Statistics .family-list {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow-y: scroll;
+}
+
+.Statistics .family-list .list-elem {
+  background-color: rgba(0, 0, 0, 0.233);
+  font-size: 0.8rem;
+  margin: 1rem;
+  width: 70vw;
+  height: 60vw;
+  min-width: 380px;
+  min-height: 370px;
+  max-width: 550px;
+  max-height: 440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Statistics .family-list .list-elem .graph {
+  -webkit-box-flex: 9;
+      -ms-flex-positive: 9;
+          flex-grow: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Statistics .family-list .list-elem .graph .content {
+  width: 90%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border: 1px solid black;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: 1rem;
+  margin-bottom: 0;
+  height: calc(100% - 2rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar {
+  height: 100%;
+  width: 3rem;
+  background-color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar p {
+  color: white;
+  -webkit-transform: translateY(-1.8rem);
+          transform: translateY(-1.8rem);
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(1) {
+  background-color: #f2ff39;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(2) {
+  background-color: #60ff39;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(3) {
+  background-color: #2bfff4;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(4) {
+  background-color: #5f43ff;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(5) {
+  background-color: #ff34a4;
+}
+
+.Statistics .family-list .list-elem .graph .content .bar:nth-of-type(6) {
+  background-color: #ff3535;
+}
+
+.Statistics .family-list .list-elem .graph .labels {
+  margin-top: 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Statistics .family-list .list-elem .graph .labels .label {
+  -webkit-transform: rotateZ(-70deg) translateY(-0.3rem) translateX(-0.4rem);
+          transform: rotateZ(-70deg) translateY(-0.3rem) translateX(-0.4rem);
+  width: 7rem;
+  margin: 0;
+  text-align: right;
+  color: white;
+}
+
+.Statistics .family-list .list-elem .title {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+}
+/*# sourceMappingURL=Statistics.css.map */

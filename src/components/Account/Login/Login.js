@@ -30,8 +30,8 @@ function Login({ window, setWindow }) {
         provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         recaptchaParameters: {
           type: "image", // 'audio'
-          size: "normal", // 'invisible' or 'compact'
-          badge: "bottomleft", //' bottomright' or 'inline' applies to invisible.
+          size: "compact", // 'invisible' or 'compact'
+          badge: "bottomright", //' bottomright' or 'inline' applies to invisible.
         },
         defaultCountry: "PL",
       },

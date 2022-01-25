@@ -3,19 +3,20 @@ import "./style/AddExpense.css";
 import { f } from "@fortawesome/react-fontawesome";
 import cart from "../../img/shopping-cart-solid.svg";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { setDoc, collection, addDoc } from "firebase/firestore";
+import { setDoc, collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 function AddExpense() {
   const [window, setWindow] = useState(0);
   const [category, setCategory] = useState();
-  const [sum, setSum] = useState();
+  const [sum, setSum] = useState(0);
   const auth = getAuth();
   const user = auth.currentUser;
   const addExp = async () => {
     const docRef = await addDoc(collection(db, "expenses"), {
       category: category,
       sum: sum,
-      userId: user.uid,
+      email: user.email,
+      time: Timestamp.now(),
     });
   };
 
@@ -159,7 +160,7 @@ function AddExpense() {
           </div>
           <input
             value={sum}
-            onChange={(e) => setSum(e.target.value)}
+            onChange={(e) => setSum(parseFloat(e.target.value))}
             type="number"
           />
           <button
