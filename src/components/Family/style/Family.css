@@ -17,6 +17,7 @@
       -ms-flex-align: center;
           align-items: center;
   z-index: 1;
+  color: white;
   height: 92%;
 }
 
@@ -52,16 +53,52 @@
   overflow-y: scroll;
 }
 
+.Family .family-list .FamId {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 5rem;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+.Family .family-list .FamId label {
+  margin-right: 1rem;
+}
+
+.Family .family-list .FamId input {
+  height: 100%;
+  font-size: 1.5rem;
+}
+
 .Family .family-list .list-elem {
   background-color: rgba(141, 141, 141, 0.445);
   font-size: 0.8rem;
   margin: 1rem;
-  width: 40vw;
-  height: 60vw;
-  min-width: 300px;
-  min-height: 370px;
+  width: 90vw;
+  color: white;
+  padding: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.2rem;
+  min-width: 300px;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;

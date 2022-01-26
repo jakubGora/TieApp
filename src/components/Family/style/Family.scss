@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  color: white;
   height: 92%;
 
   .top {
@@ -27,14 +28,37 @@
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: scroll;
+
+    .FamId {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: 5rem;
+      width: 100%;
+      font-size: 1.5rem;
+      label {
+        margin-right: 1rem;
+      }
+      input {
+        height: 100%;
+        font-size: 1.5rem;
+      }
+    }
+
     .list-elem {
       background-color: rgba(141, 141, 141, 0.445);
       font-size: 0.8rem;
       margin: 1rem;
-      width: 40vw;
-      height: 60vw;
+      width: 90vw;
+      color: white;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
       min-width: 300px;
-      min-height: 370px;
+
       display: flex;
       flex-direction: column;
 

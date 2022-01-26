@@ -11,7 +11,7 @@ import {
 import { getAuth } from "firebase/auth";
 import Message from "../Message/Message";
 
-function Family({ fam, setFam }) {
+function Family({ fam, setFam, famId }) {
   const user = getAuth().currentUser;
   const [msg, setMsg] = useState(false);
 
@@ -39,9 +39,18 @@ function Family({ fam, setFam }) {
         <h1>Rodzina</h1>
       </div>
       <div className="family-list">
+        {famId ? (
+          <div className="FamId">
+            <label>Identyfikator rodziny: </label>
+            <input type="text" value={famId} />
+          </div>
+        ) : (
+          ""
+        )}
+        <h2>Członkowie:</h2>
         {fam.map((q, n) => (
           <div className="list-elem" key={n}>
-            {q}
+            <p>{n + 1 + ". " + q}</p>
           </div>
         ))}
         {fam.length > 0 ? (

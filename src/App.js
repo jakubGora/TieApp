@@ -20,6 +20,7 @@ function App() {
   const [isSignIn, setIsSignIn] = useState(false);
   const [expenses, setExpenses] = useState([]);
   const [fam, setFam] = useState([]);
+  const [famId, setFamId] = useState();
   const user = getAuth().currentUser;
 
   const [firstLogin, setFirtLogin] = useState(true);
@@ -30,6 +31,7 @@ function App() {
       {
         email: user.email,
         famId: null,
+        photoUrl: user.photoURL,
         name: user.displayName
           ? user.displayName
           : user.email.substring(0, user.email.indexOf("@")),
@@ -65,6 +67,7 @@ function App() {
       onSnapshot(collection(db, "fam"), (snapshot) =>
         snapshot.docs.map((doc) => {
           if (doc.data().users.includes(user.email)) {
+            setFamId(doc.id);
             setFam(doc.data().users);
           }
         })
@@ -120,7 +123,11 @@ function App() {
         ""
       )}
       {isSignIn && window == 4 ? <User setWindow={setWindow} /> : ""}
-      {isSignIn && window == 8 ? <Family fam={fam} setFam={setFam} /> : ""}
+      {isSignIn && window == 8 ? (
+        <Family fam={fam} setFam={setFam} famId={famId} />
+      ) : (
+        ""
+      )}
       {isSignIn ? <Nav window={window} setWindow={setWindow} /> : ""}
     </div>
   );
