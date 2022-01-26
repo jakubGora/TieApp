@@ -49,6 +49,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow-y: scroll;
 }
 
 .Family .family-list .list-elem {

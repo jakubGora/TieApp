@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-function Statistics({ fam, expenses }) {
+function Statistics({ fam, expenses, setWindow }) {
   const getPercent = (cat, email) => {
     var elemSum = 0;
     var sum = 0.1;
@@ -14,10 +14,15 @@ function Statistics({ fam, expenses }) {
         if (elem.email == email) elemSum += elem.sum;
       }
     });
-    console.log(cat, elemSum / sum, email);
+
     return (elemSum / sum) * 100;
   };
-
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (expenses.length == 0) setWindow(0);
+  //   }, 10);
+  //   return () => clearInterval(interval);
+  // }, [window]);
   return (
     <div className="Statistics">
       {" "}

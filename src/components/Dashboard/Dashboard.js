@@ -9,8 +9,9 @@ import {
   toDate,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Offline, Online } from "react-detect-offline";
 import { getAuth } from "firebase/auth";
-function Dashboard({ expenses, window, fam }) {
+function Dashboard({ expenses, window, setWindow, fam }) {
   const nowMonth = new Date().getMonth();
   const nowYear = new Date().getYear();
   const [zakupy, setZakupy] = useState(0);
@@ -22,6 +23,7 @@ function Dashboard({ expenses, window, fam }) {
   const [sum, setSum] = useState(0);
   const [cat, setCat] = useState();
   const [months, setMonths] = useState([]);
+  const [disconected, setDisconected] = useState(false);
   const [currentMonth, setCurrentM] = useState({
     month: nowMonth + 1,
     year: nowYear + 1900,
@@ -41,6 +43,12 @@ function Dashboard({ expenses, window, fam }) {
     "Listopad",
     "Grudzień",
   ];
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (!disconected) if (expenses.length == 0) setWindow(1);
+  //   }, 10);
+  //   return () => clearInterval(interval);
+  // }, [window]);
 
   const getExpensesSum = (email) => {
     let sumExp = 0;
@@ -86,7 +94,7 @@ function Dashboard({ expenses, window, fam }) {
         ...months,
         { month: monthA + 1, year: year + 1900 },
       ]);
-      console.log(monthA + 1, currentMonth.month);
+
       if (
         monthA + 1 == currentMonth.month &&
         year + 1900 === currentMonth.year
@@ -133,6 +141,8 @@ function Dashboard({ expenses, window, fam }) {
 
   return (
     <div className="Dashboard">
+      <Offline onRender={() => setDisconected(true)}>Disconected</Offline>
+      <Online onRender={() => setDisconected(false)} />
       <div className="head">
         <h1>Dashboard</h1>
         <p>Dzień dobry</p>
@@ -142,25 +152,26 @@ function Dashboard({ expenses, window, fam }) {
           <select
             onChange={(e) => {
               setCurrentM(months[e.target.value]);
-              console.log(currentMonth);
             }}
           >
             {months.map((a, i) => (
-              <option onClickCapture={() => console.log("asd")} value={i}>
+              <option key={i} value={i}>
                 {monthNames[a.month - 1] + " " + a.year}
               </option>
             ))}
           </select>
           <h2>
-            {userSum} zł <s>/ {sum} zł</s>
+            {Math.round(userSum * 1000) / 1000} zł{" "}
+            <s>/ {Math.round(sum * 1000) / 1000} zł</s>
           </h2>
         </div>
       </div>
 
       <div onClick={() => setCat(null)} className="graph">
         <div className="content">
-          {fam.map((el) => (
+          {fam.map((el, i) => (
             <div
+              key={i}
               className="bar"
               style={{ height: `${getExpensesSum(el)[0]}%` }}
             >
@@ -172,8 +183,10 @@ function Dashboard({ expenses, window, fam }) {
         </div>
         <div className="line"></div>
         <div className="labels">
-          {fam.map((el) => (
-            <div className="label">{el.substring(0, el.indexOf("@"))}</div>
+          {fam.map((el, i) => (
+            <div key={i} className="label">
+              {el.substring(0, el.indexOf("@"))}
+            </div>
           ))}
         </div>
       </div>

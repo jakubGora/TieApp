@@ -9,13 +9,15 @@ import {
 import { useState } from "react/cjs/react.development";
 import Message from "../../Message/Message";
 import defUserImg from "../../../img/defUser.png";
-function User() {
+
+function User({ setWindow }) {
   const auth = getAuth();
   const user = auth.currentUser;
-
+  const [passMs, setPassMs] = useState(false);
   const [mailSendedMS, setMailSendedMS] = useState(false);
 
   const SendPassResetMail = () => {
+    setPassMs(true);
     sendPasswordResetEmail(auth, email)
       .then(() => {
         // Password reset email sent!
@@ -103,10 +105,19 @@ function User() {
           <img src={photoURL ? photoURL : defUserImg} alt="photo" />
         </div>
         <div>
+          <button onClick={() => setWindow(8)}>Twoja rodzina</button>
           <button onClick={() => SendPassResetMail()}>Zmień hasło</button>
           <button onClick={() => SignOut()}>Wyloguj się</button>
         </div>
       </div>
+      {passMs ? (
+        <Message
+          message={"Link do zmiany hasła wysłaliśmy na twojego maila."}
+          close={() => setPassMs(false)}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

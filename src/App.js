@@ -10,8 +10,9 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import User from "./components/Account/User/User";
 import Family from "./components/Family/Family";
 import { useEffect } from "react/cjs/react.development";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, addDoc } from "firebase/firestore";
 import { db } from "./firebase";
+
 import Statistics from "./components/Statistics/Statistics";
 function App() {
   const auth = getAuth();
@@ -21,10 +22,39 @@ function App() {
   const [fam, setFam] = useState([]);
   const user = getAuth().currentUser;
 
+  const [firstLogin, setFirtLogin] = useState(true);
+
+  const addUser = async () => {
+    addDoc(
+      collection(db, "user"),
+      {
+        email: user.email,
+        famId: null,
+        name: user.displayName
+          ? user.displayName
+          : user.email.substring(0, user.email.indexOf("@")),
+      },
+      user.uid
+    );
+  };
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "user"), (snapshot) => {
+        if (user)
+          if (!snapshot.docs.some((e) => e.data().email === user.email)) {
+            if (firstLogin) addUser();
+            setFirtLogin(false);
+          } else {
+            setFirtLogin(false);
+          }
+      }),
+    [user]
+  );
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
         setIsSignIn(true);
       } else {
         setIsSignIn(false);
@@ -41,52 +71,57 @@ function App() {
       );
 
     setExpenses([]);
-    if (user)
-      onSnapshot(collection(db, "expenses"), (snapshot) =>
-        snapshot.docs.map((doc) => {
-          if (fam.includes(doc.data().email)) {
-            setExpenses((expenses) => [
-              ...expenses,
-              {
-                email: doc.data().email,
-                category: doc.data().category,
-                sum: doc.data().sum,
-                time: doc.data().time,
-                id: doc.id,
-              },
-            ]);
-          }
-        })
-      );
-  }, [window]);
+
+    onSnapshot(collection(db, "expenses"), (snapshot) =>
+      snapshot.docs.map((doc) => {
+        if (fam.includes(doc.data().email)) {
+          setExpenses((expenses) => [
+            ...expenses,
+            {
+              email: doc.data().email,
+              category: doc.data().category,
+              sum: doc.data().sum,
+              time: doc.data().time,
+              id: doc.id,
+            },
+          ]);
+        }
+      })
+    );
+  }, [window, db]);
 
   return (
     <div className="App">
-      {!isSignIn ? <Login /> : ""}
+      {!isSignIn ? <Login window={window} setWindow={setWindow} /> : ""}
 
-      {isSignIn && window == 0 ? (
-        <Dashboard expenses={expenses} window={window} fam={fam} />
+      {fam.length > 0 && isSignIn && window == 0 ? (
+        <Dashboard
+          expenses={expenses}
+          window={window}
+          setWindow={setWindow}
+          fam={fam}
+        />
       ) : (
         ""
       )}
-      {isSignIn && window == 1 ? (
-        <Statistics fam={fam} expenses={expenses} />
+      {fam.length > 0 && isSignIn && window == 1 ? (
+        <Statistics fam={fam} expenses={expenses} setWindow={setWindow} />
       ) : (
         ""
       )}
-      {isSignIn && window == 2 ? <AddExpense /> : ""}
-      {isSignIn && window == 3 ? (
+      {fam.length > 0 && isSignIn && window == 2 ? (
+        <AddExpense setWindow={setWindow} />
+      ) : (
+        ""
+      )}
+      {fam.length > 0 && isSignIn && window == 3 ? (
         <History expenses={expenses} window={window} setWindow={setWindow} />
       ) : (
         ""
       )}
-      {isSignIn && window == 4 ? <User /> : ""}
-      {isSignIn && window <= 5 ? (
-        <Nav window={window} setWindow={setWindow} />
-      ) : (
-        ""
-      )}
-      {isSignIn && window == 8 ? <Family fam={fam} /> : ""}
+      {isSignIn && window == 4 ? <User setWindow={setWindow} /> : ""}
+      {isSignIn && window == 8 ? <Family fam={fam} setFam={setFam} /> : ""}
+      {isSignIn ? <Nav window={window} setWindow={setWindow} /> : ""}
     </div>
   );
 }

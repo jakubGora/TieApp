@@ -9,6 +9,10 @@ import { getAuth, RecaptchaVerifier } from "firebase/auth";
 import StyleFirebaseUi from "react-firebaseui/StyledFirebaseAuth";
 import logo from "../../../img/logoTieApp.png";
 function Login({ window, setWindow }) {
+  useEffect(() => {
+    if (getAuth().currentUser) setWindow(0);
+  });
+
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function (authResult, redirectUrl) {

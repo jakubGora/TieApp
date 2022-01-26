@@ -26,7 +26,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
+    overflow-y: scroll;
     .list-elem {
       background-color: rgba(141, 141, 141, 0.445);
       font-size: 0.8rem;
