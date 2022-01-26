@@ -145,7 +145,12 @@ function Dashboard({ expenses, window, setWindow, fam }) {
       <Online onRender={() => setDisconected(false)} />
       <div className="head">
         <h1>Dashboard</h1>
-        <p>Dzień dobry</p>
+        <p>
+          Dzień dobry{" "}
+          {user.displayName
+            ? user.displayName
+            : user.email.substring(0, user.email.indexOf("@"))}
+        </p>
       </div>
       <div onClick={() => setCat(null)} className="mainInfo">
         <div className="text">

@@ -16,7 +16,7 @@ function Login({ window, setWindow }) {
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-        setWindow(0);
+        setWindow(4);
         return true;
       },
     },

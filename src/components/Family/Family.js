@@ -42,15 +42,15 @@ function Family({ fam, setFam, famId }) {
         {famId ? (
           <div className="FamId">
             <label>Identyfikator rodziny: </label>
-            <input type="text" value={famId} />
+            <input type="text" value={famId} readonly />
           </div>
         ) : (
           ""
         )}
-        <h2>Członkowie:</h2>
+        {fam.length > 0 ? <h2>Członkowie:</h2> : ""}
         {fam.map((q, n) => (
           <div className="list-elem" key={n}>
-            <p>{n + 1 + ". " + q}</p>
+            <p>{n + 1 + ". \t" + q}</p>
           </div>
         ))}
         {fam.length > 0 ? (
