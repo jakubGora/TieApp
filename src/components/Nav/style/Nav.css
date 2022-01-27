@@ -54,6 +54,8 @@
 .Nav .button:nth-of-type(3) {
   background-color: #7c4dfd;
   border-radius: 1rem;
+  width: 20vw;
+  max-width: 90px;
   -webkit-transform: scale(110%) translateY(-0.3rem);
           transform: scale(110%) translateY(-0.3rem);
 }

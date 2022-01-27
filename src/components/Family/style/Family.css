@@ -51,6 +51,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   overflow-y: scroll;
+  padding-top: 1rem;
 }
 
 .Family .family-list .FamId {
@@ -70,14 +71,17 @@
   height: 5rem;
   width: 100%;
   font-size: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .Family .family-list .FamId label {
+  padding: 1rem;
   margin-right: 1rem;
 }
 
 .Family .family-list .FamId input {
-  height: 100%;
+  padding: 0.5rem;
   font-size: 1.5rem;
 }
 

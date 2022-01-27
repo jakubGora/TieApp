@@ -17,12 +17,12 @@ function Statistics({ fam, expenses, setWindow }) {
 
     return (elemSum / sum) * 100;
   };
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (expenses.length == 0) setWindow(0);
-  //   }, 10);
-  //   return () => clearInterval(interval);
-  // }, [window]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (expenses.length == 0) setWindow(0);
+    }, 10);
+    return () => clearInterval(interval);
+  }, [window]);
   return (
     <div className="Statistics">
       {" "}

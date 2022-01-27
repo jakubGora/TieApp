@@ -33,7 +33,8 @@
   .button:nth-of-type(3) {
     background-color: $base-color;
     border-radius: 1rem;
-
+    width: 20vw;
+    max-width: 90px;
     transform: scale(110%) translateY(-0.3rem);
   }
   .button:nth-of-type(3):hover {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./style/AddExpense.css";
 import { f } from "@fortawesome/react-fontawesome";
 import cart from "../../img/shopping-cart-solid.svg";
@@ -8,7 +8,8 @@ import { db } from "../../firebase";
 function AddExpense() {
   const [window, setWindow] = useState(0);
   const [category, setCategory] = useState();
-  const [sum, setSum] = useState(0);
+  const [sum, setSum] = useState(null);
+  const refInput = useRef(null);
   const auth = getAuth();
   const user = auth.currentUser;
   const addExp = async () => {
@@ -18,6 +19,12 @@ function AddExpense() {
       email: user.email,
       time: Timestamp.now(),
     });
+  };
+
+  const dofusOnLoad = () => {
+    // `current` wskazuje na zamontowany element kontrolki formularza
+    refInput.current.focus();
+    refInput.current.value = null;
   };
 
   return (
@@ -154,25 +161,33 @@ function AddExpense() {
         ""
       )}
       {window == 1 ? (
-        <div className="exp-sum">
+        <div onLoad={() => dofusOnLoad()} className="exp-sum">
           <div className="top">
-            <h1>Wybierz kategorię:</h1>
+            <h1>Wprowadź kwotę:</h1>
           </div>
+
           <input
             value={sum}
             onChange={(e) => setSum(parseFloat(e.target.value))}
             type="number"
+            ref={refInput}
+            placeholder="Kwota"
+            autoFocus
           />
-          <button
-            onClick={() => {
-              console.log({ category, sum });
-              addExp();
-              setWindow(0);
-              setSum(null);
-            }}
-          >
-            Dodaj
-          </button>
+          {sum > 0 ? (
+            <button
+              onClick={() => {
+                console.log({ category, sum });
+                addExp();
+                setWindow(0);
+                setSum(null);
+              }}
+            >
+              Dodaj
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         ""

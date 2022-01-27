@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddExpense from "./components/AddExpense/AddExpense";
 import Dashboard from "./components/Dashboard/Dashboard";
 import History from "./components/History/History";
@@ -9,11 +9,12 @@ import "./style/App.css";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import User from "./components/Account/User/User";
 import Family from "./components/Family/Family";
-import { useEffect } from "react/cjs/react.development";
+import { Offline, Online } from "react-detect-offline";
 import { collection, onSnapshot, addDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
 import Statistics from "./components/Statistics/Statistics";
+import Loading from "./components/Loading/Loading";
 function App() {
   const auth = getAuth();
   const [window, setWindow] = useState(0);
@@ -91,13 +92,20 @@ function App() {
         }
       })
     );
+
+    if (fam.length != 0 && !isSignIn) {
+      setWindow(0);
+    }
   }, [window, db]);
 
   return (
     <div className="App">
+      <div className="offline">
+        {" "}
+        <Offline style={{ backgroundColor: "red" }}>Disconected</Offline>
+      </div>
       {!isSignIn ? <Login window={window} setWindow={setWindow} /> : ""}
-
-      {fam.length > 0 && isSignIn && window == 0 ? (
+      {isSignIn && window == 0 ? (
         <Dashboard
           expenses={expenses}
           window={window}
@@ -107,17 +115,13 @@ function App() {
       ) : (
         ""
       )}
-      {fam.length > 0 && isSignIn && window == 1 ? (
+      {isSignIn && window == 1 ? (
         <Statistics fam={fam} expenses={expenses} setWindow={setWindow} />
       ) : (
         ""
       )}
-      {fam.length > 0 && isSignIn && window == 2 ? (
-        <AddExpense setWindow={setWindow} />
-      ) : (
-        ""
-      )}
-      {fam.length > 0 && isSignIn && window == 3 ? (
+      {isSignIn && window == 2 ? <AddExpense setWindow={setWindow} /> : ""}
+      {isSignIn && window == 3 ? (
         <History expenses={expenses} window={window} setWindow={setWindow} />
       ) : (
         ""
@@ -129,6 +133,7 @@ function App() {
         ""
       )}
       {isSignIn ? <Nav window={window} setWindow={setWindow} /> : ""}
+      {fam.length == 0 ? <Loading /> : ""}
     </div>
   );
 }

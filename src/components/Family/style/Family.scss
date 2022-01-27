@@ -28,7 +28,7 @@
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: scroll;
-
+    padding-top: 1rem;
     .FamId {
       display: flex;
       align-items: center;
@@ -37,11 +37,14 @@
       height: 5rem;
       width: 100%;
       font-size: 1.5rem;
+      padding: 1rem;
+      margin-bottom: 2rem;
       label {
+        padding: 1rem;
         margin-right: 1rem;
       }
       input {
-        height: 100%;
+        padding: 0.5rem;
         font-size: 1.5rem;
       }
     }

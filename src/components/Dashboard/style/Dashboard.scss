@@ -20,7 +20,9 @@
     font-size: 2.5rem;
     font-weight: 600;
     width: 90%;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     h1 {
       font-size: 2rem;
       margin-bottom: 0.1rem;
@@ -30,6 +32,17 @@
       font-size: 1.2rem;
       color: rgba(255, 255, 255, 0.671);
       font-weight: 400;
+    }
+    img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 4px solid rgb(255, 255, 255);
+      background-color: blanchedalmond;
+      cursor: pointer;
+    }
+    img:hover {
+      filter: brightness(80%);
     }
   }
   .mainInfo {
@@ -79,7 +92,7 @@
 
     flex-direction: row;
     overflow-x: scroll;
-    width: 100vw;
+    width: 100%;
     padding: 1rem;
     .info {
       display: flex;
@@ -172,12 +185,23 @@
   }
 
   ::-webkit-scrollbar {
-    width: 0px;
+    width: 2px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.274);
+    border-radius: 1rem;
   }
 }
 @media only screen and (max-width: 900px) {
   .Dashboard {
     border-top-left-radius: 0rem;
     border-top-right-radius: 0rem;
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0);
+      border-radius: 1rem;
+    }
   }
 }

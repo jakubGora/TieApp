@@ -11,6 +11,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: end;
+  .offline {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    background-color: red;
+    color: white;
+    text-align: center;
+    z-index: 1001;
+  }
 }
 ::-webkit-scrollbar {
   width: 0px;

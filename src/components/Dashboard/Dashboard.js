@@ -1,5 +1,5 @@
-import React from "react";
-import { useEffect, useState } from "react/cjs/react.development";
+import React, { useEffect, useState } from "react";
+import defUserImg from "../../img/defUser.png";
 import "./style/Dashboard.css";
 import {
   setDoc,
@@ -9,7 +9,7 @@ import {
   toDate,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import { Offline, Online } from "react-detect-offline";
+
 import { getAuth } from "firebase/auth";
 function Dashboard({ expenses, window, setWindow, fam }) {
   const nowMonth = new Date().getMonth();
@@ -43,12 +43,12 @@ function Dashboard({ expenses, window, setWindow, fam }) {
     "Listopad",
     "Grudzień",
   ];
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (!disconected) if (expenses.length == 0) setWindow(1);
-  //   }, 10);
-  //   return () => clearInterval(interval);
-  // }, [window]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (expenses.length == 0) setWindow(1);
+    }, 10);
+    return () => clearInterval(interval);
+  }, [window]);
 
   const getExpensesSum = (email) => {
     let sumExp = 0;
@@ -141,16 +141,22 @@ function Dashboard({ expenses, window, setWindow, fam }) {
 
   return (
     <div className="Dashboard">
-      <Offline onRender={() => setDisconected(true)}>Disconected</Offline>
-      <Online onRender={() => setDisconected(false)} />
       <div className="head">
-        <h1>Dashboard</h1>
-        <p>
-          Dzień dobry{" "}
-          {user.displayName
-            ? user.displayName
-            : user.email.substring(0, user.email.indexOf("@"))}
-        </p>
+        <div>
+          <h1>Dashboard</h1>
+          <p>
+            Dzień dobry{" "}
+            {user.displayName
+              ? user.displayName
+              : user.email.substring(0, user.email.indexOf("@"))}
+          </p>
+        </div>
+
+        <img
+          src={user.photoURL ? user.photoURL : defUserImg}
+          alt="img"
+          onClick={() => setWindow(4)}
+        />
       </div>
       <div onClick={() => setCat(null)} className="mainInfo">
         <div className="text">
@@ -186,6 +192,7 @@ function Dashboard({ expenses, window, setWindow, fam }) {
             </div>
           ))}
         </div>
+
         <div className="line"></div>
         <div className="labels">
           {fam.map((el, i) => (

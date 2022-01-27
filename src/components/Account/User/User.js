@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import "./style/User.css";
 import {
   getAuth,
@@ -6,7 +6,7 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { useState } from "react/cjs/react.development";
+
 import Message from "../../Message/Message";
 import defUserImg from "../../../img/defUser.png";
 
