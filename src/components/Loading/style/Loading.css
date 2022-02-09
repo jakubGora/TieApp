@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 1000;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: #7c4dfd;
   background: linear-gradient(348deg, white 0%, #7c4dfd 100%);
   -webkit-box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);

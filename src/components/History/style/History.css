@@ -33,6 +33,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.288);
 }
 
 .History .list {
@@ -101,6 +102,22 @@
 
 .History .list .elem .box h2 {
   font-size: 1.2rem;
+}
+
+.History .list .elem .box button {
+  color: #f1f1f1;
+  background-color: red;
+  width: 2.4rem;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.History .list .elem .box button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
 }
 
 .History .list .elem .box:last-of-type {

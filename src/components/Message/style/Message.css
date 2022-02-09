@@ -80,7 +80,20 @@
 }
 
 .Message .window p {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
+  color: black;
+}
+
+.Message .window input,
+.Message .window button {
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+.Message .window button {
+  border-left: 0;
 }
 /*# sourceMappingURL=Message.css.map */

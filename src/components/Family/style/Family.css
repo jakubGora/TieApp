@@ -33,7 +33,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #7c4dfd;
+  border-bottom: 1px solid white;
 }
 
 .Family .family-list {
@@ -125,5 +125,39 @@
       -ms-flex-pack: center;
           justify-content: center;
   color: white;
+}
+
+.Family .family-list .notCreated {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.Family .family-list .notCreated h2 {
+  font-weight: 300;
+}
+
+.Family .family-list .notCreated button {
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+.Family .family-list .notCreated button:hover {
+  background-color: #bbbbbb;
 }
 /*# sourceMappingURL=Family.css.map */

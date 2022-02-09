@@ -92,9 +92,16 @@ function Family({ fam, setFam, famId, setFamId }) {
         {fam.length > 0 ? (
           ""
         ) : (
-          <div>
-            <button onClick={() => addFamily()}>Załóż rodzinę</button>
-            <button onClick={() => setMsg(true)}>Dołącz do rodziny</button>
+          <div className="notCreated">
+            <h2>
+              Aby rozpocząć dołącz do rodziny lub utwórz własną aby inni mogli
+              dołączyć do Ciebie
+            </h2>
+            <div>
+              <button onClick={() => addFamily()}>Załóż rodzinę</button>
+              <button onClick={() => setMsg(true)}>Dołącz do rodziny</button>
+            </div>
+            <h2>lub</h2>
             <button
               onClick={() => {
                 SignOut();

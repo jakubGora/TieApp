@@ -161,7 +161,7 @@ function App() {
       ) : (
         ""
       )}
-      {expenses.length == 0 ? <Loading /> : ""}
+      {/* {expenses.length == 0 ? <Loading /> : ""} */}
       {fam == [] ? <Family /> : ""}
     </div>
   );

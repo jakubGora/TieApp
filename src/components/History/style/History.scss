@@ -18,6 +18,7 @@
     color: white;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.288);
   }
   .list {
     width: 100%;
@@ -54,6 +55,20 @@
         }
         h2 {
           font-size: 1.2rem;
+        }
+        button {
+          color: rgb(241, 241, 241);
+          background-color: red;
+          width: 2.4rem;
+          padding: 0.5rem;
+          border: none;
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+        button:hover {
+          background-color: white;
+          color: black;
+          cursor: pointer;
         }
       }
       .box:last-of-type {
