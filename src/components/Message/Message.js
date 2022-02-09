@@ -19,11 +19,10 @@ function Message({ message, close, isInput }) {
   const joinFamily = async () => {
     onSnapshot(collection(db, "fam"), (snapshot) =>
       snapshot.docs.map((docu) => {
-        console.log(docu.data().users.includes(user.email));
         if (docu.id === famId && !docu.data().users.includes(user.email)) {
           var users = docu.data().users;
           users.push(user.email);
-          console.log(users);
+
           updateDoc(doc(db, "fam", famId), {
             users: users,
           });

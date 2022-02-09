@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./style/User.css";
 import {
   getAuth,
@@ -55,7 +55,7 @@ function User({ setWindow }) {
       setEmail(user.email);
       setPhotoUrl(user.photoURL);
       setEmailVerified(user.emailVerified);
-      console.log(emailVerified);
+
       // The user's ID, unique to the Firebase project. Do NOT use
       // this value to authenticate with your backend server, if
       // you have one. Use User.getToken() instead.

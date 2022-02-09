@@ -23,104 +23,12 @@
   .family-list {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     overflow-y: scroll;
-    .list-elem {
-      background-color: rgba(0, 0, 0, 0.233);
-      font-size: 0.8rem;
-      margin: 1rem;
-      width: 70vw;
-      height: 60vw;
-      min-width: 380px;
-      min-height: 370px;
-      max-width: 550px;
-      max-height: 440px;
-      display: flex;
-      flex-direction: column;
-      .graph {
-        flex-grow: 9;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        .content {
-          width: 90%;
-          flex-grow: 1;
-          border: 1px solid black;
-
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-          margin: 1rem;
-          margin-bottom: 0;
-          height: calc(100% - 2rem);
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          .bar {
-            height: 100%;
-            width: 3rem;
-
-            background-color: red;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            p {
-              color: white;
-              transform: translateY(-1.8rem);
-            }
-          }
-          .bar:nth-of-type(1) {
-            background-color: $graph-color6;
-          }
-          .bar:nth-of-type(2) {
-            background-color: $graph-color2;
-          }
-          .bar:nth-of-type(3) {
-            background-color: $graph-color3;
-          }
-          .bar:nth-of-type(4) {
-            background-color: $graph-color4;
-          }
-          .bar:nth-of-type(5) {
-            background-color: $graph-color5;
-          }
-          .bar:nth-of-type(6) {
-            background-color: $graph-color1;
-          }
-        }
-        .labels {
-          margin-top: 1rem;
-          flex-grow: 1;
-          width: 100%;
-          padding-left: 1rem;
-          padding-right: 1rem;
-          margin-bottom: 1rem;
-          height: 4rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          .label {
-            transform: rotateZ(-70deg) translateY(-0.3rem) translateX(-0.4rem);
-            width: 7rem;
-
-            margin: 0;
-            text-align: right;
-            color: white;
-          }
-        }
-      }
-      .title {
-        width: 100%;
-        flex-grow: 1;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-    }
+    color: rgb(255, 255, 255);
+    padding-bottom: 1rem;
   }
 }

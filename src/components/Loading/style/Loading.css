@@ -24,7 +24,7 @@
 }
 
 .Loading img {
-  width: 40vmin;
+  width: 10rem;
   -webkit-animation: spin 4s linear infinite;
           animation: spin 4s linear infinite;
 }

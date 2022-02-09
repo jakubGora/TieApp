@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import defUserImg from "../../img/defUser.png";
 import "./style/Dashboard.css";
-import {
-  setDoc,
-  collection,
-  addDoc,
-  Timestamp,
-  toDate,
-} from "firebase/firestore";
-import { db } from "../../firebase";
 
 import { getAuth } from "firebase/auth";
-function Dashboard({ expenses, window, setWindow, fam }) {
+function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   const nowMonth = new Date().getMonth();
   const nowYear = new Date().getYear();
   const [zakupy, setZakupy] = useState(0);
@@ -22,11 +14,11 @@ function Dashboard({ expenses, window, setWindow, fam }) {
   const [userSum, setUserSum] = useState(0);
   const [sum, setSum] = useState(0);
   const [cat, setCat] = useState();
-  const [months, setMonths] = useState([]);
+
   const [disconected, setDisconected] = useState(false);
   const [currentMonth, setCurrentM] = useState({
-    month: nowMonth + 1,
-    year: nowYear + 1900,
+    month: 0,
+    year: 0,
   });
   const user = getAuth().currentUser;
   const monthNames = [
@@ -50,22 +42,31 @@ function Dashboard({ expenses, window, setWindow, fam }) {
     return () => clearInterval(interval);
   }, [window]);
 
+  useEffect(() => {
+    if (currentMonth.year == 0 && months.length > 0) {
+      setMonths((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
+      setCurrentM(months[0]);
+    }
+  }, []);
+
   const getExpensesSum = (email) => {
     let sumExp = 0;
 
     expenses.map((ex) => {
-      let monthA = new Date(
-        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-      ).getMonth();
-      let year = new Date(
-        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-      ).getYear();
-      if (
-        ex.email == email &&
-        monthA + 1 === currentMonth.month &&
-        year + 1900 === currentMonth.year
-      ) {
-        if (ex.category == cat || cat == null) sumExp += ex.sum;
+      if (ex.sum) {
+        let monthA = new Date(
+          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+        ).getMonth();
+        let year = new Date(
+          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+        ).getYear();
+        if (
+          ex.email == email &&
+          monthA + 1 === currentMonth.month &&
+          year + 1900 === currentMonth.year
+        ) {
+          if (ex.category == cat || cat == null) sumExp += ex.sum;
+        }
       }
     });
 
@@ -80,64 +81,68 @@ function Dashboard({ expenses, window, setWindow, fam }) {
     setRozrywka(0);
     setSum(0);
     setUserSum(0);
-    var now = new Date();
+
     setMonths([]);
     expenses.map((ex) => {
-      let monthA = new Date(
-        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-      ).getMonth();
-      let year = new Date(
-        ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-      ).getYear();
+      if (ex.sum) {
+        let monthA = new Date(
+          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+        ).getMonth();
+        let year = new Date(
+          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
+        ).getYear();
 
-      setMonths((months) => [
-        ...months,
-        { month: monthA + 1, year: year + 1900 },
-      ]);
+        setMonths((months) => [
+          ...months,
+          { month: monthA + 1, year: year + 1900 },
+        ]);
 
-      if (
-        monthA + 1 == currentMonth.month &&
-        year + 1900 === currentMonth.year
-      ) {
-        if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
-        setSum((sum) => sum + ex.sum);
+        if (
+          monthA + 1 == currentMonth.month &&
+          year + 1900 === currentMonth.year
+        ) {
+          if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
+          setSum((sum) => sum + ex.sum);
 
-        switch (ex.category) {
-          case "Zakupy":
-            if (ex.email == user.email) setZakupy((zakupy) => zakupy + ex.sum);
+          switch (ex.category) {
+            case "Zakupy":
+              if (ex.email == user.email)
+                setZakupy((zakupy) => zakupy + ex.sum);
 
-            break;
-          case "Chemia":
-            if (ex.email == user.email) setChemia((chemia) => chemia + ex.sum);
+              break;
+            case "Chemia":
+              if (ex.email == user.email)
+                setChemia((chemia) => chemia + ex.sum);
 
-            break;
-          case "Ubrania":
-            if (ex.email == user.email)
-              setUbrania((ubrania) => ubrania + ex.sum);
+              break;
+            case "Ubrania":
+              if (ex.email == user.email)
+                setUbrania((ubrania) => ubrania + ex.sum);
 
-            break;
-          case "Jedzenie":
-            if (ex.email == user.email)
-              setJedzenie((jedzenie) => jedzenie + ex.sum);
+              break;
+            case "Jedzenie":
+              if (ex.email == user.email)
+                setJedzenie((jedzenie) => jedzenie + ex.sum);
 
-            break;
-          case "Rozrywka":
-            if (ex.email == user.email)
-              setRozrywka((rozrywka) => rozrywka + ex.sum);
+              break;
+            case "Rozrywka":
+              if (ex.email == user.email)
+                setRozrywka((rozrywka) => rozrywka + ex.sum);
 
-            break;
-          default:
-            break;
+              break;
+            default:
+              break;
+          }
         }
       }
     });
 
     setMonths((months) => [
       ...new Map(
-        months.map((item) => [item["month"] && item["year"], item])
+        months.map((item) => [item["month"] || item["year"], item])
       ).values(),
     ]);
-  }, [window, currentMonth]);
+  }, [expenses, currentMonth]);
 
   return (
     <div className="Dashboard">

@@ -35,7 +35,7 @@ function History({ expenses, window, setWindow }) {
         <div className="scroll">
           {" "}
           {expenses.map((elem, i) =>
-            elem.email == user.email ? (
+            elem.email == user.email && elem.category ? (
               <div key={i} className="elem">
                 <div className="box">
                   <h2>{elem.category}</h2>

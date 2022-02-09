@@ -23,7 +23,7 @@ function App() {
   const [fam, setFam] = useState([]);
   const [famId, setFamId] = useState();
   const user = getAuth().currentUser;
-
+  const [months, setMonths] = useState([]);
   const [firstLogin, setFirtLogin] = useState(true);
 
   const addUser = async () => {
@@ -51,9 +51,27 @@ function App() {
           } else {
             setFirtLogin(false);
           }
+        if (user)
+          onSnapshot(collection(db, "fam"), (snapshot) =>
+            snapshot.docs.map((doc) => {
+              if (doc.data().users.includes(user.email)) {
+                setFamId(doc.id);
+                setFam(doc.data().users);
+              }
+            })
+          );
       }),
     [user]
   );
+
+  useState(() => {
+    if (!user) {
+      setFam([]);
+      setFamId(null);
+      setIsSignIn(false);
+      setExpenses([]);
+    }
+  }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -63,16 +81,6 @@ function App() {
         setIsSignIn(false);
       }
     });
-
-    if (user)
-      onSnapshot(collection(db, "fam"), (snapshot) =>
-        snapshot.docs.map((doc) => {
-          if (doc.data().users.includes(user.email)) {
-            setFamId(doc.id);
-            setFam(doc.data().users);
-          }
-        })
-      );
 
     setExpenses([]);
 
@@ -96,7 +104,7 @@ function App() {
     if (fam.length != 0 && !isSignIn) {
       setWindow(0);
     }
-  }, [window, db]);
+  }, [window, db, auth]);
 
   return (
     <div className="App">
@@ -105,35 +113,56 @@ function App() {
         <Offline style={{ backgroundColor: "red" }}>Disconected</Offline>
       </div>
       {!isSignIn ? <Login window={window} setWindow={setWindow} /> : ""}
-      {isSignIn && window == 0 ? (
+      {fam.length > 0 && isSignIn && window == 0 ? (
         <Dashboard
           expenses={expenses}
           window={window}
           setWindow={setWindow}
           fam={fam}
+          months={months}
+          setMonths={setMonths}
         />
       ) : (
         ""
       )}
-      {isSignIn && window == 1 ? (
-        <Statistics fam={fam} expenses={expenses} setWindow={setWindow} />
+      {fam.length > 0 && isSignIn && window == 1 ? (
+        <Statistics
+          fam={fam}
+          expenses={expenses}
+          setWindow={setWindow}
+          months={months}
+          setMonths={setMonths}
+        />
       ) : (
         ""
       )}
-      {isSignIn && window == 2 ? <AddExpense setWindow={setWindow} /> : ""}
-      {isSignIn && window == 3 ? (
+      {fam.length > 0 && isSignIn && window == 2 ? (
+        <AddExpense setWindow={setWindow} />
+      ) : (
+        ""
+      )}
+      {fam.length > 0 && isSignIn && window == 3 ? (
         <History expenses={expenses} window={window} setWindow={setWindow} />
       ) : (
         ""
       )}
-      {isSignIn && window == 4 ? <User setWindow={setWindow} /> : ""}
-      {isSignIn && window == 8 ? (
-        <Family fam={fam} setFam={setFam} famId={famId} />
+      {fam.length > 0 && isSignIn && window == 4 ? (
+        <User setWindow={setWindow} />
       ) : (
         ""
       )}
-      {isSignIn ? <Nav window={window} setWindow={setWindow} /> : ""}
-      {fam.length == 0 ? <Loading /> : ""}
+      {user && (fam.length == 0 || window == 8) ? (
+        <Family fam={fam} setFam={setFam} famId={famId} setFamId={setFamId} />
+      ) : (
+        ""
+      )}
+      {fam.length > 0 && isSignIn ? (
+        <Nav window={window} setWindow={setWindow} />
+      ) : (
+        ""
+      )}
+      {expenses.length == 0 ? <Loading /> : ""}
+      {fam == [] ? <Family /> : ""}
     </div>
   );
 }

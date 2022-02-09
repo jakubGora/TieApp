@@ -177,7 +177,6 @@ function AddExpense() {
           {sum > 0 ? (
             <button
               onClick={() => {
-                console.log({ category, sum });
                 addExp();
                 setWindow(0);
                 setSum(null);
