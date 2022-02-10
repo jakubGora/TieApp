@@ -12,13 +12,13 @@ import { getAuth, connectAuthEmulator, RecaptchaVerifier } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDG_J-kaLylAI4Wk1YDuYUEMBCNeugnmGE",
-  authDomain: "tieapp-2281e.firebaseapp.com",
-  projectId: "tieapp-2281e",
-  storageBucket: "tieapp-2281e.appspot.com",
-  messagingSenderId: "15121582945",
-  appId: "1:15121582945:web:ec71befcf6aff42877d320",
-  measurementId: "G-C34NCT43JX",
+  apiKey: process.env.REACT_APP_MY_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 const app = initializeApp(firebaseConfig);
 // Initialize Firebase
