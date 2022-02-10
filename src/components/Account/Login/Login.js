@@ -43,7 +43,8 @@ function Login({ window, setWindow }) {
         <img src={logo} alt="logo" />
         <h1>Tie App</h1>
       </div>
-      <h2>Sign in</h2>{" "}
+      <h3>Kontroluj rodzinne wydatki</h3>
+      <h2>Sign in</h2>
       <StyleFirebaseUi uiConfig={uiConfig} firebaseAuth={fireAuth} />
     </div>
   );
