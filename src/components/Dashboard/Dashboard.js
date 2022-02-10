@@ -45,7 +45,7 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   useEffect(() => {
     if (currentMonth.year == 0 && months.length > 0) {
       setMonths((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
-      setCurrentM(months[0]);
+      setCurrentM(months[months.length - 1]);
     }
   }, []);
 

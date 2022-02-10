@@ -62,6 +62,12 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
   const [rozrywkaA, setRozrywkaA] = useState(0);
   const [labels, setLabels] = useState([]);
   const [monthsA, setMonthsA] = useState(months);
+
+  useEffect(() => {
+    setMonthsA(months);
+    setMonthsA((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
+  }, [monthsA]);
+
   useEffect(() => {
     setZakupy([]);
     setRozrywka([]);
@@ -76,6 +82,7 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
     setSum([]);
     setLabels([]);
 
+    console.log(monthsA);
     monthsA.map((elem, ind) => {
       setLabels((lab) => [...lab, elem.month + "." + elem.year]);
       var sumA = 0;
@@ -203,7 +210,7 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
   useEffect(() => {
     const interval = setInterval(() => {
       if (expenses.length == 0) setWindow(0);
-    }, 10);
+    }, 2);
     return () => clearInterval(interval);
   }, [window]);
 
