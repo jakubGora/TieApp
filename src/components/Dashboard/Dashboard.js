@@ -15,7 +15,6 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   const [sum, setSum] = useState(0);
   const [cat, setCat] = useState();
 
-  const [disconected, setDisconected] = useState(false);
   const [currentMonth, setCurrentM] = useState({
     month: 0,
     year: 0,

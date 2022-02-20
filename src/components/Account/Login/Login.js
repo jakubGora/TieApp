@@ -10,12 +10,13 @@ import StyleFirebaseUi from "react-firebaseui/StyledFirebaseAuth";
 import logo from "../../../img/logoTieApp.png";
 function Login({ window, setWindow }) {
   useEffect(() => {
-    if (getAuth().currentUser) setWindow(0);
-  });
+    if (getAuth().currentUser) setWindow(4);
+  }, [getAuth().currentUser]);
 
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+        console.log("login");
         setWindow(4);
         return true;
       },
@@ -25,7 +26,7 @@ function Login({ window, setWindow }) {
 
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       {
         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -37,6 +38,7 @@ function Login({ window, setWindow }) {
     // Privacy policy url.
     privacyPolicyUrl: "https://jakubgora.pl/privacy",
   };
+
   return (
     <div className="Login">
       <div className="head">

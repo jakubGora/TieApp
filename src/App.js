@@ -70,6 +70,8 @@ function App() {
       setFamId(null);
       setIsSignIn(false);
       setExpenses([]);
+    } else {
+      setWindow(4);
     }
   }, [user]);
 
