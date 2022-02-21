@@ -79,17 +79,17 @@
   min-width: 10rem;
   max-width: 160px;
   padding-top: 0rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   margin: 0.5rem;
-  border: 2.5px solid #3f00ff;
+  border: 2.5px solid #6c3bff;
   border-radius: 1.7rem;
   font-size: 1.5rem;
   -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
           box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
-  color: #3f00ff;
+  color: white;
   cursor: pointer;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .AddExpense .infoList .info:hover {
-  background-color: #3f00ff;
+  background-color: #6c3bff;
   color: white;
 }
 

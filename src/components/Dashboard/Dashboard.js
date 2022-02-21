@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import defUserImg from "../../img/defUser.png";
 import "./style/Dashboard.css";
 
@@ -6,6 +6,11 @@ import { getAuth } from "firebase/auth";
 function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   const [userSum, setUserSum] = useState(0);
   const [sum, setSum] = useState(0);
+  const [monthsA, setMonthsA] = useState(
+    months.sort(
+      (c, b) => new Date(b.year, b.month, 1) - new Date(c.year, c.month, 1)
+    )
+  );
   const [cat, setCat] = useState();
   const [cats, setCats] = useState([]);
   const [currentMonth, setCurrentM] = useState({
@@ -27,6 +32,8 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
     "Listopad",
     "Grudzień",
   ];
+  const selectElem = useRef();
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (expenses.length == 0) setWindow(1);
@@ -35,15 +42,12 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   }, [window]);
 
   useEffect(() => {
-    if (currentMonth.year == 0 && months.length > 0) {
-      setMonths((a) => a.sort((a, b) => a.year - b.year && a.month - b.month));
-      setCurrentM(months[months.length - 1]);
-    }
+    setCurrentM(null);
   }, []);
 
   const getExpensesSum = (email) => {
     let sumExp = 0;
-
+    let suma = 0;
     expenses.map((ex) => {
       if (ex.sum) {
         let monthA = new Date(
@@ -53,16 +57,25 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
           ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
         ).getYear();
         if (
-          ex.email == email &&
-          monthA + 1 === currentMonth.month &&
-          year + 1900 === currentMonth.year
+          ((monthA + 1 === currentMonth?.month &&
+            year + 1900 === currentMonth?.year) ||
+            !currentMonth) &&
+          (ex.category === cat || !cat)
         ) {
-          if (ex.category == cat || cat == null) sumExp += ex.sum;
+          if (ex.email === email) {
+            sumExp += ex.sum;
+          }
+          suma += ex.sum;
         }
       }
     });
+    if (!suma) suma = sum;
 
-    return [Math.round((sumExp * 100) / sum), sumExp];
+    return [Math.round((sumExp * 100) / suma), sumExp];
+  };
+
+  const getDateFirestore = (time) => {
+    return new Date(time.seconds * 1000 + time.nanoseconds / 1000000);
   };
 
   useEffect(() => {
@@ -74,12 +87,8 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
     setMonths([]);
     expenses.map((ex) => {
       if (ex.sum) {
-        let monthA = new Date(
-          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-        ).getMonth();
-        let year = new Date(
-          ex.time.seconds * 1000 + ex.time.nanoseconds / 1000000
-        ).getYear();
+        let monthA = getDateFirestore(ex.time).getMonth();
+        let year = getDateFirestore(ex.time).getYear();
 
         setMonths((months) => [
           ...months,
@@ -87,8 +96,9 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
         ]);
 
         if (
-          monthA + 1 == currentMonth.month &&
-          year + 1900 === currentMonth.year
+          (monthA + 1 === currentMonth?.month &&
+            year + 1900 === currentMonth?.year) ||
+          !currentMonth
         ) {
           if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
           setSum((sum) => sum + ex.sum);
@@ -105,7 +115,15 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
 
   const getCatSum = (cat) => {
     let sum = expenses
-      .filter((obj) => obj.category === cat && obj.email === user.email)
+      .filter(
+        (obj) =>
+          obj.category === cat &&
+          obj.email === user.email &&
+          ((getDateFirestore(obj.time).getMonth() + 1 === currentMonth?.month &&
+            getDateFirestore(obj.time).getYear() + 1900 ===
+              currentMonth?.year) ||
+            !currentMonth)
+      )
       .reduce((a, c) => a + c.sum, 0);
 
     return sum;
@@ -138,13 +156,22 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
           onClick={() => setWindow(4)}
         />
       </div>
-      <div onClick={() => setCat(null)} className="mainInfo">
+      <div
+        onClick={() => {
+          setCat(null);
+        }}
+        className="mainInfo"
+      >
         <div className="text">
           <select
+            ref={selectElem}
             onChange={(e) => {
               setCurrentM(months[e.target.value]);
             }}
           >
+            <option key={0} value={null} defaultValue>
+              All
+            </option>
             {months.map((a, i) => (
               <option key={i} value={i}>
                 {monthNames[a.month - 1] + " " + a.year}

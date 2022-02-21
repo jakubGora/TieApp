@@ -50,7 +50,11 @@ export const optionsPie = {
 
 function Statistics({ fam, expenses, setWindow, months, setMonths }) {
   const [labels, setLabels] = useState([]);
-  const [monthsA, setMonthsA] = useState(months);
+  const [monthsA, setMonthsA] = useState(
+    months.sort(
+      (b, c) => new Date(b.year, b.month, 1) - new Date(c.year, c.month, 1)
+    )
+  );
   const [cats, setCats] = useState([]);
   const colors = {
     backgroundColor: [
@@ -72,9 +76,7 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
   useEffect(() => {
     getCats();
     getLabels();
-    setMonthsA(months);
-    setMonthsA((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
-  }, [monthsA]);
+  }, []);
 
   const getCatSum = (cat) => {
     let sum = expenses

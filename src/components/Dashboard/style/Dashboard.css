@@ -119,13 +119,11 @@
 
 .Dashboard .infoList {
   overflow-y: scroll;
-  background-color: #f5f5f5;
   height: 12rem;
-  border-top-right-radius: 2rem;
-  border-top-left-radius: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 1rem;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -151,17 +149,19 @@
           justify-content: flex-start;
   padding: 1rem;
   min-width: 8rem;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   margin: 0.5rem;
-  border: 2.5px solid #3f00ff;
+  border: 2.5px solid #6c3bff;
   border-radius: 1.7rem;
   font-size: 1.2rem;
   -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
           box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
-  color: #3f00ff;
+  color: white;
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
   cursor: pointer;
 }
 
@@ -170,7 +170,7 @@
 }
 
 .Dashboard .infoList .info.main {
-  background-color: #3f00ff;
+  background-color: #6c3bff;
   color: white;
 }
 
@@ -181,6 +181,7 @@
   color: white;
   width: 100%;
   margin: 1rem;
+  margin-bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -238,8 +239,8 @@
   transition: all ease 1s;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  -webkit-box-shadow: 1rem -0.1rem 0.5rem #3f00ff;
-          box-shadow: 1rem -0.1rem 0.5rem #3f00ff;
+  -webkit-box-shadow: 1rem -0.1rem 0.5rem #110042;
+          box-shadow: 1rem -0.1rem 0.5rem #110042;
   z-index: 5;
 }
 
@@ -286,12 +287,13 @@
 }
 
 .Dashboard ::-webkit-scrollbar {
-  width: 2px;
+  height: 5px;
 }
 
 .Dashboard ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.274);
+  background: black;
   border-radius: 1rem;
+  z-index: 1005;
 }
 
 @media only screen and (max-width: 900px) {

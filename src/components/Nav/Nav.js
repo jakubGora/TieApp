@@ -17,35 +17,35 @@ function Nav({ window, setWindow }) {
         className={`button ${window === 0 ? "active" : ""}`}
         onClick={() => setWindow(0)}
       >
-        <img src={window == 0 ? home : home1} alt="home" />
+        <img src={home1} alt="home" />
         <p>Dashboard</p>
       </div>
       <div
         className={`button ${window === 1 ? "active" : ""}`}
         onClick={() => setWindow(1)}
       >
-        <img src={window == 1 ? stats : stats1} alt="home" />
+        <img src={stats1} alt="home" />
         <p>Statistics</p>
       </div>
       <div
         className={`button ${window === 2 ? "active" : ""}`}
         onClick={() => setWindow(2)}
       >
-        <img src={window == 2 ? plus : plus1} alt="Add" />
+        <img src={plus1} alt="Add" />
         <p>Add</p>
       </div>
       <div
         className={`button ${window === 3 ? "active" : ""}`}
         onClick={() => setWindow(3)}
       >
-        <img src={window == 3 ? history1 : history} alt="home" />
+        <img src={history} alt="home" />
         <p>History</p>
       </div>
       <div
         className={`button ${window === 4 ? "active" : ""}`}
         onClick={() => setWindow(4)}
       >
-        <img src={window == 4 ? user1 : user} alt="home" />
+        <img src={user} alt="home" />
         <p>User</p>
       </div>
       <div className="indicator"></div>
