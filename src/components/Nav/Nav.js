@@ -9,29 +9,46 @@ import history from "../../img/history (2).png";
 import history1 from "../../img/history (2) — kopia.png";
 import user1 from "../../img/user(1).png";
 import user from "../../img/user.png";
+import { useState } from "react";
 function Nav({ window, setWindow }) {
   return (
     <div className="Nav">
-      <div className="button" onClick={() => setWindow(0)}>
+      <div
+        className={`button ${window === 0 ? "active" : ""}`}
+        onClick={() => setWindow(0)}
+      >
         <img src={window == 0 ? home : home1} alt="home" />
-        Dashboard
+        <p>Dashboard</p>
       </div>
-
-      <div className="button" onClick={() => setWindow(1)}>
+      <div
+        className={`button ${window === 1 ? "active" : ""}`}
+        onClick={() => setWindow(1)}
+      >
         <img src={window == 1 ? stats : stats1} alt="home" />
-        Statistics
+        <p>Statistics</p>
       </div>
-      <div className="button" onClick={() => setWindow(2)}>
+      <div
+        className={`button ${window === 2 ? "active" : ""}`}
+        onClick={() => setWindow(2)}
+      >
         <img src={window == 2 ? plus : plus1} alt="Add" />
+        <p>Add</p>
       </div>
-      <div className="button" onClick={() => setWindow(3)}>
+      <div
+        className={`button ${window === 3 ? "active" : ""}`}
+        onClick={() => setWindow(3)}
+      >
         <img src={window == 3 ? history1 : history} alt="home" />
-        History
+        <p>History</p>
       </div>
-      <div className="button" onClick={() => setWindow(4)}>
+      <div
+        className={`button ${window === 4 ? "active" : ""}`}
+        onClick={() => setWindow(4)}
+      >
         <img src={window == 4 ? user1 : user} alt="home" />
-        User
+        <p>User</p>
       </div>
+      <div className="indicator"></div>
     </div>
   );
 }

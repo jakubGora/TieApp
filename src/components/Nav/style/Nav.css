@@ -7,7 +7,7 @@
   -webkit-box-shadow: 0rem -1rem 1rem rgba(196, 196, 196, 0.178);
           box-shadow: 0rem -1rem 1rem rgba(196, 196, 196, 0.178);
   height: 6vh;
-  min-height: 4rem;
+  min-height: 3rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   -webkit-box-orient: horizontal;
@@ -23,6 +23,7 @@
 }
 
 .Nav .button {
+  padding-top: 0.5rem;
   height: 100%;
   width: 20vw;
   display: -webkit-box;
@@ -38,37 +39,147 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 0.6rem;
   cursor: pointer;
 }
 
 .Nav .button img {
   width: 1.8rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
+  z-index: 1002;
 }
 
-.Nav .button:hover {
-  background-color: rgba(0, 0, 0, 0.075);
+.Nav .button p {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem;
+  opacity: 1;
 }
 
 .Nav .button:nth-of-type(3) {
-  background-color: #7c4dfd;
-  border-radius: 1rem;
-  width: 20vw;
-  max-width: 90px;
-  -webkit-transform: scale(110%) translateY(-0.3rem);
-          transform: scale(110%) translateY(-0.3rem);
+  width: 15vw;
 }
 
-.Nav .button:nth-of-type(3):hover {
-  -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+.Nav .button:nth-of-type(3) img {
+  -webkit-transform: translateY(-1rem);
+          transform: translateY(-1rem);
+}
+
+.Nav .button:nth-of-type(3) p {
+  font-size: 0;
+}
+
+.Nav .button:nth-of-type(1) {
+  border-bottom-left-radius: 1rem;
+}
+
+.Nav .button:nth-last-of-type(2) {
+  border-bottom-right-radius: 1rem;
+}
+
+.Nav .button.active {
+  background-color: #c2c2c2;
+}
+
+.Nav .button:nth-of-type(3).active {
+  background-color: white;
+}
+
+.Nav .indicator {
+  position: absolute;
+  z-index: 1001;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  left: 50%;
+  top: calc(90vh + 1rem - 5.5vh);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  background-color: #3f00ff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 @media only screen and (max-width: 900px) {
   .Nav {
     border-bottom-left-radius: 0rem;
     border-bottom-right-radius: 0rem;
+    padding-top: 0;
+  }
+  .Nav .indicator {
+    position: absolute;
+    z-index: 1001;
+    width: 4rem;
+    height: 4rem;
+    margin: calc((20vw - 4rem) / 2);
+    top: auto;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    bottom: 1.5rem;
+    left: 0;
+    pointer-events: none;
+    background-color: #3f00ff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .Nav .button {
+    background-color: rgba(240, 248, 255, 0);
+  }
+  .Nav .button p {
+    height: 0;
+    -webkit-transform: scaleY(0%);
+            transform: scaleY(0%);
+    opacity: 0;
+  }
+  .Nav .button:nth-of-type(3) {
+    width: 20vw;
+  }
+  .Nav .button:nth-of-type(3) img {
+    -webkit-transform: translateY(0rem);
+            transform: translateY(0rem);
+  }
+  .Nav .button:nth-of-type(3) p {
+    height: 0;
+    -webkit-transform: scaleY(0%);
+            transform: scaleY(0%);
+    opacity: 0;
+  }
+  .Nav .button.active {
+    background-color: rgba(240, 248, 255, 0);
+  }
+  .Nav .button.active img {
+    -webkit-transform: translateY(-1.5rem);
+            transform: translateY(-1.5rem);
+  }
+  .Nav .button.active p {
+    -webkit-transform: scaleY(100%) translateY(-20%);
+            transform: scaleY(100%) translateY(-20%);
+    height: 100%;
+    font-size: 0.8rem;
+    opacity: 1;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .Nav .button:nth-of-type(1).active ~ .indicator {
+    -webkit-transform: translateX(calc(20vw * 0));
+            transform: translateX(calc(20vw * 0));
+  }
+  .Nav .button:nth-of-type(2).active ~ .indicator {
+    -webkit-transform: translateX(calc(20vw * 1));
+            transform: translateX(calc(20vw * 1));
+  }
+  .Nav .button:nth-of-type(3).active ~ .indicator {
+    -webkit-transform: translateX(calc(20vw * 2));
+            transform: translateX(calc(20vw * 2));
+  }
+  .Nav .button:nth-of-type(4).active ~ .indicator {
+    -webkit-transform: translateX(calc(20vw * 3));
+            transform: translateX(calc(20vw * 3));
+  }
+  .Nav .button:nth-of-type(5).active ~ .indicator {
+    -webkit-transform: translateX(calc(20vw * 4));
+            transform: translateX(calc(20vw * 4));
   }
 }
 /*# sourceMappingURL=Nav.css.map */

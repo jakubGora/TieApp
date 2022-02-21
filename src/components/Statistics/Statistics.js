@@ -49,159 +49,99 @@ export const optionsPie = {
 };
 
 function Statistics({ fam, expenses, setWindow, months, setMonths }) {
-  const [sum, setSum] = useState([]);
-  const [zakupy, setZakupy] = useState([]);
-  const [chemia, setChemia] = useState([]);
-  const [ubrania, setUbrania] = useState([]);
-  const [jedzenie, setJedzenie] = useState([]);
-  const [rozrywka, setRozrywka] = useState([]);
-  const [zakupyA, setZakupyA] = useState(0);
-  const [chemiaA, setChemiaA] = useState(0);
-  const [ubraniaA, setUbraniaA] = useState(0);
-  const [jedzenieA, setJedzenieA] = useState(0);
-  const [rozrywkaA, setRozrywkaA] = useState(0);
   const [labels, setLabels] = useState([]);
   const [monthsA, setMonthsA] = useState(months);
+  const [cats, setCats] = useState([]);
+  const colors = {
+    backgroundColor: [
+      "rgba(255, 99, 132, 0.9)",
+      "rgba(54, 162, 235, 0.9)",
+      "rgba(255, 206, 86, 0.9)",
+      "rgba(75, 192, 192, 0.9)",
+      "rgba(153, 102, 255, 0.9)",
+    ],
+    borderColor: [
+      "rgba(255, 0, 76, 1)",
+      "rgba(0, 141, 255, 1)",
+      "rgba(255, 176, 0, 1)",
+      "rgba(0, 228, 255, 1)",
+      "rgba(84, 0, 255, 1)",
+    ],
+  };
 
   useEffect(() => {
+    getCats();
+    getLabels();
     setMonthsA(months);
     setMonthsA((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
   }, [monthsA]);
 
-  useEffect(() => {
-    setZakupy([]);
-    setRozrywka([]);
-    setJedzenie([]);
-    setChemia([]);
-    setUbrania([]);
-    setZakupyA(0);
-    setRozrywkaA(0);
-    setJedzenieA(0);
-    setChemiaA(0);
-    setUbraniaA(0);
-    setSum([]);
-    setLabels([]);
+  const getCatSum = (cat) => {
+    let sum = expenses
+      .filter((obj) => obj.category === cat)
+      .reduce((a, c) => a + c.sum, 0);
 
-    console.log(monthsA);
-    monthsA.map((elem, ind) => {
-      setLabels((lab) => [...lab, elem.month + "." + elem.year]);
-      var sumA = 0;
-      var zakupyA = 0;
-      var chemiaA = 0;
-      var ubraniaA = 0;
-      var jedzenieA = 0;
-      var rozrywkaA = 0;
-      expenses.map((exp, index) => {
-        if (exp.sum) {
-          let monthA = new Date(
-            exp.time.seconds * 1000 + exp.time.nanoseconds / 1000000
-          ).getMonth();
-          let year = new Date(
-            exp.time.seconds * 1000 + exp.time.nanoseconds / 1000000
-          ).getYear();
-          if (elem.month == monthA + 1 && elem.year == year + 1900) {
-            sumA += exp.sum;
+    return sum;
+  };
 
-            switch (exp.category) {
-              case "Zakupy":
-                zakupyA += exp.sum;
-                setZakupyA((a) => a + exp.sum);
-                break;
-              case "Chemia":
-                chemiaA += exp.sum;
-                setChemiaA((a) => a + exp.sum);
-                break;
-              case "Ubrania":
-                ubraniaA += exp.sum;
-                setUbraniaA((a) => a + exp.sum);
-                break;
-              case "Jedzenie":
-                jedzenieA += exp.sum;
-                setJedzenieA((a) => a + exp.sum);
-                break;
-              case "Rozrywka":
-                rozrywkaA += exp.sum;
-                setRozrywkaA((a) => a + exp.sum);
-                break;
-              default:
-                break;
-            }
-          }
-        }
-      });
-      setZakupy((s) => [...s, zakupyA]);
-      setRozrywka((s) => [...s, rozrywkaA]);
-      setJedzenie((s) => [...s, jedzenieA]);
-      setChemia((s) => [...s, chemiaA]);
-      setUbrania((s) => [...s, ubraniaA]);
-      setSum((s) => [...s, sumA]);
+  const getSumCatMonths = (cat) => {
+    let monthTab = [];
+    monthsA.forEach((mon) => {
+      let month = expenses
+        .filter((obj) => {
+          let date = new Date(
+            obj.time?.seconds * 1000 + obj.time?.nanoseconds / 1000000
+          );
+
+          return (
+            date.getMonth() + 1 === mon.month &&
+            date.getYear() + 1900 === mon.year &&
+            obj.category === cat
+          );
+        })
+        .reduce((a, c) => a + c.sum, 0);
+
+      monthTab.push(month);
     });
-  }, []);
+
+    return monthTab;
+  };
+
+  const getLabels = () => {
+    let months = monthsA.map((mon) => mon.month + "." + mon.year);
+
+    setLabels(months);
+  };
+
+  const getCats = () => {
+    let cats = new Set(expenses.map((elem) => elem.category));
+    let array = [...cats];
+    let index = array.indexOf(null);
+
+    array.splice(index, 1);
+    setCats(array);
+  };
 
   const dataLines = {
     labels,
 
-    datasets: [
-      {
-        label: "Suma",
-        data: sum,
-
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgb(255, 99, 132)",
-      },
-      {
-        label: "Zakupy",
-        data: zakupy,
-        borderColor: "rgb(54, 162, 235)",
-        backgroundColor: "rgb(54, 162, 235)",
-      },
-      {
-        label: "Chemia",
-        data: chemia,
-        borderColor: "rgb(255, 206, 86)",
-        backgroundColor: "rgb(255, 206, 86)",
-      },
-      {
-        label: "Ubrania",
-        data: ubrania,
-        borderColor: "rgb(255, 255, 80)",
-        backgroundColor: "rgb(255, 255, 60)",
-      },
-      {
-        label: "Jedzenie",
-        data: jedzenie,
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgb(75, 192, 192)",
-      },
-      {
-        label: "Rozrywka",
-        data: rozrywka,
-        borderColor: "rgb(153, 102, 255)",
-        backgroundColor: "rgb(153, 102, 255)",
-      },
-    ],
+    datasets: cats.map((cat, ind) => ({
+      label: cat,
+      data: getSumCatMonths(cat),
+      borderColor: colors.borderColor[ind % colors.backgroundColor.length],
+      backgroundColor:
+        colors.backgroundColor[ind % colors.backgroundColor.length],
+    })),
   };
 
   const dataPie = {
-    labels: ["Zakupy", "Chemia", "Ubrania", "Jedzenie", "Rozrywka"],
+    labels: cats,
     datasets: [
       {
         label: "# of Votes",
-        data: [zakupyA, chemiaA, ubraniaA, jedzenieA, rozrywkaA],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.9)",
-          "rgba(54, 162, 235, 0.9)",
-          "rgba(255, 206, 86, 0.9)",
-          "rgba(75, 192, 192, 0.9)",
-          "rgba(153, 102, 255, 0.9)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-        ],
+        data: cats.map((elem) => getCatSum(elem)),
+        backgroundColor: colors.backgroundColor,
+        borderColor: colors.borderColor,
         borderWidth: 1,
       },
     ],

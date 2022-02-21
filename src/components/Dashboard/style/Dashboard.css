@@ -156,12 +156,12 @@
       -ms-flex-positive: 1;
           flex-grow: 1;
   margin: 0.5rem;
-  border: 2.5px solid #7c4dfd;
+  border: 2.5px solid #3f00ff;
   border-radius: 1.7rem;
   font-size: 1.2rem;
   -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
           box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
-  color: #7c4dfd;
+  color: #3f00ff;
   cursor: pointer;
 }
 
@@ -170,7 +170,7 @@
 }
 
 .Dashboard .infoList .info.main {
-  background-color: #7c4dfd;
+  background-color: #3f00ff;
   color: white;
 }
 
@@ -238,8 +238,8 @@
   transition: all ease 1s;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  -webkit-box-shadow: 1rem -0.1rem 0.5rem #7c4dfd;
-          box-shadow: 1rem -0.1rem 0.5rem #7c4dfd;
+  -webkit-box-shadow: 1rem -0.1rem 0.5rem #3f00ff;
+          box-shadow: 1rem -0.1rem 0.5rem #3f00ff;
   z-index: 5;
 }
 

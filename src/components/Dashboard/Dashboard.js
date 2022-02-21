@@ -4,17 +4,10 @@ import "./style/Dashboard.css";
 
 import { getAuth } from "firebase/auth";
 function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
-  const nowMonth = new Date().getMonth();
-  const nowYear = new Date().getYear();
-  const [zakupy, setZakupy] = useState(0);
-  const [chemia, setChemia] = useState(0);
-  const [ubrania, setUbrania] = useState(0);
-  const [jedzenie, setJedzenie] = useState(0);
-  const [rozrywka, setRozrywka] = useState(0);
   const [userSum, setUserSum] = useState(0);
   const [sum, setSum] = useState(0);
   const [cat, setCat] = useState();
-
+  const [cats, setCats] = useState([]);
   const [currentMonth, setCurrentM] = useState({
     month: 0,
     year: 0,
@@ -43,7 +36,7 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
 
   useEffect(() => {
     if (currentMonth.year == 0 && months.length > 0) {
-      setMonths((a) => a.sort((a, b) => a.year - b.year || a.month - b.month));
+      setMonths((a) => a.sort((a, b) => a.year - b.year && a.month - b.month));
       setCurrentM(months[months.length - 1]);
     }
   }, []);
@@ -73,11 +66,8 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   };
 
   useEffect(() => {
-    setZakupy(0);
-    setChemia(0);
-    setUbrania(0);
-    setJedzenie(0);
-    setRozrywka(0);
+    getCats();
+
     setSum(0);
     setUserSum(0);
 
@@ -102,36 +92,6 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
         ) {
           if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
           setSum((sum) => sum + ex.sum);
-
-          switch (ex.category) {
-            case "Zakupy":
-              if (ex.email == user.email)
-                setZakupy((zakupy) => zakupy + ex.sum);
-
-              break;
-            case "Chemia":
-              if (ex.email == user.email)
-                setChemia((chemia) => chemia + ex.sum);
-
-              break;
-            case "Ubrania":
-              if (ex.email == user.email)
-                setUbrania((ubrania) => ubrania + ex.sum);
-
-              break;
-            case "Jedzenie":
-              if (ex.email == user.email)
-                setJedzenie((jedzenie) => jedzenie + ex.sum);
-
-              break;
-            case "Rozrywka":
-              if (ex.email == user.email)
-                setRozrywka((rozrywka) => rozrywka + ex.sum);
-
-              break;
-            default:
-              break;
-          }
         }
       }
     });
@@ -143,6 +103,22 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
     ]);
   }, [expenses, currentMonth]);
 
+  const getCatSum = (cat) => {
+    let sum = expenses
+      .filter((obj) => obj.category === cat && obj.email === user.email)
+      .reduce((a, c) => a + c.sum, 0);
+
+    return sum;
+  };
+
+  const getCats = () => {
+    let cats = new Set(expenses.map((elem) => elem.category));
+    let array = [...cats];
+    let index = array.indexOf(null);
+
+    array.splice(index, 1);
+    setCats(array);
+  };
   return (
     <div className="Dashboard">
       <div className="head">
@@ -208,36 +184,15 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
       </div>
 
       <div className="infoList">
-        <div
-          onClick={() => setCat("Zakupy")}
-          className={`info ${cat == "Zakupy" ? "main" : ""}`}
-        >
-          <p>Zakupy:</p> <strong>{zakupy} zł</strong>
-        </div>
-        <div
-          onClick={() => setCat("Chemia")}
-          className={`info ${cat == "Chemia" ? "main" : ""}`}
-        >
-          <p>Chemia:</p> <strong>{chemia} zł</strong>
-        </div>
-        <div
-          onClick={() => setCat("Ubrania")}
-          className={`info ${cat == "Ubrania" ? "main" : ""}`}
-        >
-          <p>Ubrania:</p> <strong>{ubrania} zł</strong>
-        </div>
-        <div
-          onClick={() => setCat("Jedzenie")}
-          className={`info ${cat == "Jedzenie" ? "main" : ""}`}
-        >
-          <p>Jedzenie:</p> <strong>{jedzenie} zł</strong>
-        </div>
-        <div
-          onClick={() => setCat("Rozrywka")}
-          className={`info ${cat == "Rozrywka" ? "main" : ""}`}
-        >
-          <p>Rozrywka:</p> <strong>{rozrywka} zł</strong>
-        </div>
+        {cats.map((elem, ind) => (
+          <div
+            key={ind}
+            onClick={() => setCat(elem)}
+            className={`info ${cat == elem ? "main" : ""}`}
+          >
+            <p>{elem}</p> <strong>{getCatSum(elem)} zł</strong>
+          </div>
+        ))}
       </div>
     </div>
   );

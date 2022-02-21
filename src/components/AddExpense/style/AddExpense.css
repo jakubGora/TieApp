@@ -84,12 +84,12 @@
       -ms-flex-positive: 1;
           flex-grow: 1;
   margin: 0.5rem;
-  border: 2.5px solid #7c4dfd;
+  border: 2.5px solid #3f00ff;
   border-radius: 1.7rem;
   font-size: 1.5rem;
   -webkit-box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
           box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
-  color: #7c4dfd;
+  color: #3f00ff;
   cursor: pointer;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .AddExpense .infoList .info:hover {
-  background-color: #7c4dfd;
+  background-color: #3f00ff;
   color: white;
 }
 
