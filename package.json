@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap-icons": "^1.8.1",
     "chart.js": "^3.7.0",
     "firebase": "^9.6.4",
     "firebaseui": "^6.0.0",

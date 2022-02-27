@@ -3,17 +3,26 @@ import React, { useEffect, useState } from "react";
 import "./style/History.css";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import Message from "../Message/Message";
 function History({ expenses, window, setWindow }) {
   const user = getAuth().currentUser;
-
-  const delDocument = async (id) => {
-    setWindow(1);
-    await deleteDoc(doc(db, "expenses", id));
-  };
+  const [mess, setMess] = useState(false);
+  const [id, setId] = useState();
 
   return (
     <div className="History">
-      {" "}
+      {mess ? (
+        <Message
+          title={"Usuwanie"}
+          message={"Czy na pewno chcesz usunąć element?"}
+          close={() => setMess(false)}
+          isInput={false}
+          delDocId={id}
+          setWindow={setWindow}
+        />
+      ) : (
+        ""
+      )}
       <div className="top">
         <h1>Twoja historia</h1>
       </div>
@@ -51,7 +60,14 @@ function History({ expenses, window, setWindow }) {
                   </p>
                 </div>
                 <div className="box">
-                  <button onClick={() => delDocument(elem.id)}>X</button>
+                  <button
+                    onClick={() => {
+                      setId(elem.id);
+                      setMess(true);
+                    }}
+                  >
+                    X
+                  </button>
                 </div>
               </div>
             ) : (

@@ -1,6 +1,9 @@
 import React, { useState, useRef } from "react";
 import "./style/AddExpense.css";
 import { f } from "@fortawesome/react-fontawesome";
+import smokingIco from "../../img/smoking (1).png";
+import healthIco from "../../img/healthcare.png";
+import dotsIco from "../../img/dots.png";
 import cart from "../../img/shopping-cart-solid.svg";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setDoc, collection, addDoc, Timestamp } from "firebase/firestore";
@@ -37,7 +40,7 @@ function AddExpense() {
           <div className="infoList">
             <div
               onClick={() => {
-                setCategory("Zakupy");
+                setCategory("Spożywcze");
                 setWindow(1);
               }}
               className="info"
@@ -57,35 +60,30 @@ function AddExpense() {
                   d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
                 ></path>
               </svg>
-              <p>Zakupy</p>
+              <p>Spożywcze</p>
             </div>
             <div
               onClick={() => {
-                setCategory("Chemia");
+                setCategory("Opłaty okresowe");
                 setWindow(1);
               }}
               className="info"
             >
               <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="prescription-bottle"
-                className="svg-inline--fa fa-prescription-bottle fa-w-12"
-                role="img"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-lightbulb-fill"
+                viewBox="0 0 16 16"
               >
-                <path
-                  fill="currentColor"
-                  d="M32 192h120c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H32v64h120c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H32v64h120c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H32v64c0 17.6 14.4 32 32 32h256c17.6 0 32-14.4 32-32V128H32v64zM360 0H24C10.8 0 0 10.8 0 24v48c0 13.2 10.8 24 24 24h336c13.2 0 24-10.8 24-24V24c0-13.2-10.8-24-24-24z"
-                ></path>
+                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
               </svg>
-              <p>Chemia</p>
+              <p>Opłaty okresowe</p>
             </div>
             <div
               onClick={() => {
-                setCategory("Ubrania");
+                setCategory("Odzież");
                 setWindow(1);
               }}
               className="info"
@@ -105,7 +103,7 @@ function AddExpense() {
                   d="M631.2 96.5L436.5 0C416.4 27.8 371.9 47.2 320 47.2S223.6 27.8 203.5 0L8.8 96.5c-7.9 4-11.1 13.6-7.2 21.5l57.2 114.5c4 7.9 13.6 11.1 21.5 7.2l56.6-27.7c10.6-5.2 23 2.5 23 14.4V480c0 17.7 14.3 32 32 32h256c17.7 0 32-14.3 32-32V226.3c0-11.8 12.4-19.6 23-14.4l56.6 27.7c7.9 4 17.5.8 21.5-7.2L638.3 118c4-7.9.8-17.6-7.1-21.5z"
                 ></path>
               </svg>
-              <p>Ubrania</p>
+              <p>Odzież</p>
             </div>
             <div
               onClick={() => {
@@ -133,6 +131,26 @@ function AddExpense() {
             </div>
             <div
               onClick={() => {
+                setCategory("Dom");
+                setWindow(1);
+              }}
+              className="info"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-house-door-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+              </svg>
+
+              <p>Dom</p>
+            </div>
+            <div
+              onClick={() => {
                 setCategory("Rozrywka");
                 setWindow(1);
               }}
@@ -154,6 +172,39 @@ function AddExpense() {
                 ></path>
               </svg>
               <p>Rozrywka</p>
+            </div>
+            <div
+              onClick={() => {
+                setCategory("Używki");
+                setWindow(1);
+              }}
+              className="info"
+            >
+              <img src={smokingIco} alt="smoking" />
+
+              <p>Używki</p>
+            </div>
+            <div
+              onClick={() => {
+                setCategory("Zdrowie");
+                setWindow(1);
+              }}
+              className="info"
+            >
+              <img src={healthIco} alt="smoking" />
+
+              <p>Zdrowie</p>
+            </div>
+            <div
+              onClick={() => {
+                setCategory("Inne");
+                setWindow(1);
+              }}
+              className="info"
+            >
+              <img src={dotsIco} alt="smoking" />
+
+              <p>Inne</p>
             </div>
           </div>
         </div>

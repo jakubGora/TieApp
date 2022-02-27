@@ -6,13 +6,14 @@ import {
   collection,
   doc,
   getDocs,
+  deleteDoc,
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { getAuth } from "firebase/auth";
 
-function Message({ message, close, isInput }) {
+function Message({ message, close, isInput, delDocId, title, setWindow }) {
   const [famId, setFamId] = useState("");
   const user = getAuth().currentUser;
 
@@ -31,11 +32,16 @@ function Message({ message, close, isInput }) {
     );
   };
 
+  const delDocument = async (id) => {
+    setWindow(1);
+    await deleteDoc(doc(db, "expenses", id));
+  };
+
   return (
     <div className="Message">
       <div className="window">
         <div className="window-top">
-          <h2>Info</h2>
+          <h2>{title}</h2>
           <button onClick={() => close()}>X</button>
         </div>
 
@@ -51,6 +57,12 @@ function Message({ message, close, isInput }) {
             />
             <button onClick={() => joinFamily(famId)}>Dołącz</button>
           </div>
+        ) : (
+          ""
+        )}
+
+        {delDocId ? (
+          <button onClick={() => delDocument(delDocId)}>Usuń</button>
         ) : (
           ""
         )}

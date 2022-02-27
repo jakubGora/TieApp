@@ -59,17 +59,34 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
   const colors = {
     backgroundColor: [
       "rgba(255, 99, 132, 0.9)",
-      "rgba(54, 162, 235, 0.9)",
+      "rgba(25, 25, 252, 0.9)",
       "rgba(255, 206, 86, 0.9)",
       "rgba(75, 192, 192, 0.9)",
       "rgba(153, 102, 255, 0.9)",
+      "rgba(255, 155, 132, 0.9)",
+      "#efed63",
+      "#63ef70",
+      "#636bef",
+      "#d663ef",
     ],
     borderColor: [
-      "rgba(255, 0, 76, 1)",
-      "rgba(0, 141, 255, 1)",
-      "rgba(255, 176, 0, 1)",
-      "rgba(0, 228, 255, 1)",
-      "rgba(84, 0, 255, 1)",
+      "rgba(255, 0, 76, 0)",
+      "rgba(0, 141, 255, 0)",
+      "rgba(255, 176, 0, 0)",
+      "rgba(0, 228, 255, 0)",
+      "rgba(84, 0, 255, 0)",
+    ],
+    borderColorLines: [
+      "rgba(255, 99, 132, 0.9)",
+      "rgba(25, 25, 252, 0.9)",
+      "rgba(255, 206, 86, 0.9)",
+      "rgba(75, 192, 192, 0.9)",
+      "rgba(153, 102, 255, 0.9)",
+      "rgba(255, 155, 132, 0.9)",
+      "#efed63",
+      "#63ef70",
+      "#636bef",
+      "#d663ef",
     ],
   };
 
@@ -130,7 +147,7 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
     datasets: cats.map((cat, ind) => ({
       label: cat,
       data: getSumCatMonths(cat),
-      borderColor: colors.borderColor[ind % colors.backgroundColor.length],
+      borderColor: colors.borderColorLines[ind % colors.backgroundColor.length],
       backgroundColor:
         colors.backgroundColor[ind % colors.backgroundColor.length],
     })),
@@ -164,7 +181,10 @@ function Statistics({ fam, expenses, setWindow, months, setMonths }) {
       </div>
       <div className="family-list">
         <h3>Zależność wydatków w kategoriach</h3>
-        <Pie options={optionsPie} data={dataPie} />
+        <div className="pie">
+          <Pie options={optionsPie} data={dataPie} />
+        </div>
+
         <h3>Wykres wydatków w miesiącach</h3>
         <Line options={optionsLines} data={dataLines} />
       </div>

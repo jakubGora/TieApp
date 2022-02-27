@@ -2,15 +2,19 @@
 
 .AddExpense {
   flex-grow: 1;
-  background-color: rgba(241, 241, 241, 0);
+
   width: 100%;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
+  z-index: 0;
   height: 92%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .top {
     width: 100%;
     display: flex;
@@ -24,8 +28,7 @@
   .infoList {
     overflow-y: scroll;
 
-    height: 100%;
-    flex-grow: 10;
+    height: 70vh;
 
     display: flex;
     flex-direction: row;
@@ -37,23 +40,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
       justify-content: center;
       padding: 1rem;
       min-width: 10rem;
       max-width: 160px;
+      max-height: 200px;
       padding-top: 0rem;
       background-color: rgba(255, 255, 255, 0);
       flex-grow: 1;
-      margin: 0.5rem;
+      margin: 1rem;
       border: 2.5px solid $base-color;
       border-radius: 1.7rem;
-      font-size: 1.5rem;
+      font-size: 1rem;
       box-shadow: 0rem 0.7rem 1.5rem rgba(0, 0, 0, 0.253);
       color: white;
       cursor: pointer;
-      svg {
+      svg,
+      img {
         margin-top: 2rem;
-        width: 5rem;
+        width: 3rem;
         height: 3rem;
       }
     }
@@ -103,7 +109,10 @@
   .AddExpense {
     border-top-left-radius: 0rem;
     border-top-right-radius: 0rem;
-
+    .infoList {
+      overflow-y: scroll;
+      height: calc(92vh - 5rem);
+    }
     .top {
       display: flex;
       justify-content: center;
@@ -111,6 +120,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.288);
       border-top-left-radius: 0rem;
       border-top-right-radius: 0rem;
+      height: 5rem;
     }
   }
 }

@@ -3,8 +3,8 @@
   z-index: 1000;
   height: 100vh;
   width: 100%;
-  background: #3f00ff;
-  background: linear-gradient(348deg, white 0%, #3f00ff 100%);
+  background: #6c3bff;
+  background: linear-gradient(348deg, white 0%, #6c3bff 100%);
   -webkit-box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);
           box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);
   display: -webkit-box;

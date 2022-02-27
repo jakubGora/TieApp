@@ -30,5 +30,10 @@
     overflow-y: scroll;
     color: rgb(255, 255, 255);
     padding-bottom: 3rem;
+
+    .pie {
+      width: 90vw;
+      max-width: 420px;
+    }
   }
 }

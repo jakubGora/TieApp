@@ -55,4 +55,9 @@
   color: white;
   padding-bottom: 3rem;
 }
+
+.Statistics .family-list .pie {
+  width: 90vw;
+  max-width: 420px;
+}
 /*# sourceMappingURL=Statistics.css.map */
