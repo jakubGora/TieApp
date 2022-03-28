@@ -106,18 +106,34 @@
 
 .History .list .elem .box button {
   color: #f1f1f1;
-  background-color: red;
-  width: 2.4rem;
+  background: radial-gradient(#0000006c, #00000000);
+  width: 100%;
+  min-width: 40px;
+  border-radius: 1rem;
   padding: 0.5rem;
   border: none;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
+.History .list .elem .box button img {
+  width: 1.5rem;
+  height: 1.5rem;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  pointer-events: none;
+}
+
 .History .list .elem .box button:hover {
-  background-color: white;
+  background-color: #e90000;
   color: black;
   cursor: pointer;
+}
+
+.History .list .elem .box button:hover img {
+  -webkit-filter: invert(0%);
+          filter: invert(0%);
+  pointer-events: none;
 }
 
 .History .list .elem .box:last-of-type {

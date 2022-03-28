@@ -58,17 +58,29 @@
         }
         button {
           color: rgb(241, 241, 241);
-          background-color: red;
-          width: 2.4rem;
+          background: radial-gradient(#0000006c, #00000000);
+          width: 100%;
+          min-width: 40px;
+          border-radius: 1rem;
           padding: 0.5rem;
           border: none;
           font-size: 1.5rem;
           font-weight: 600;
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+            filter: invert(100%);
+            pointer-events: none;
+          }
         }
         button:hover {
-          background-color: white;
+          background-color: rgb(233, 0, 0);
           color: black;
           cursor: pointer;
+          img {
+            filter: invert(0%);
+            pointer-events: none;
+          }
         }
       }
       .box:last-of-type {

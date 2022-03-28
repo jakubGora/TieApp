@@ -4,13 +4,13 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(73, 73, 73, 0.459);
-  display: flex;
+
+  display: flex !important;
   align-items: center;
   justify-content: center;
   .window {
     width: 90vw;
-    padding: 2rem;
+
     background-color: white;
     display: flex;
     align-items: center;
@@ -32,10 +32,10 @@
       }
       button {
         border: none;
-        padding: 0.3rem;
+        padding: 0.5rem;
         font-size: 1.5rem;
+        margin-top: 0 !important;
         width: 2.5rem;
-        height: 2.5rem;
         font-weight: 600;
         align-self: flex-end;
       }
@@ -45,20 +45,36 @@
         color: white;
       }
     }
-    p {
-      font-size: 1.5rem;
-      text-align: center;
-      color: black;
-    }
-    input,
-    button {
-      padding: 0.5rem;
-      font-size: 1.3rem;
-      border: 1px solid black;
-      border-radius: 0;
-    }
-    button {
-      border-left: 0;
+    .window-bottom {
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-size: 1.5rem;
+        text-align: center;
+        color: black;
+      }
+      input,
+      button {
+        border: none;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+
+        font-weight: 600;
+      }
+      input {
+        font-weight: 200;
+        border: 1px solid black;
+        background-color: rgb(238, 238, 238);
+      }
+      button:hover {
+        background-color: rgb(255, 0, 0);
+        cursor: pointer;
+        color: white;
+      }
     }
   }
 }

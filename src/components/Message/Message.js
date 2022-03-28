@@ -13,27 +13,40 @@ import {
 import { db } from "../../firebase";
 import { getAuth } from "firebase/auth";
 
-function Message({ message, close, isInput, delDocId, title, setWindow }) {
+function Message({
+  message,
+  close,
+  isInput,
+  delDocId,
+  title,
+  setWindow,
+  setSortedExp,
+}) {
   const [famId, setFamId] = useState("");
   const user = getAuth().currentUser;
 
   const joinFamily = async () => {
     onSnapshot(collection(db, "fam"), (snapshot) =>
       snapshot.docs.map((docu) => {
-        if (docu.id === famId && !docu.data().users.includes(user.email)) {
+        if (
+          docu.id === famId.trim() &&
+          !docu.data().users.includes(user.email)
+        ) {
           var users = docu.data().users;
           users.push(user.email);
 
-          updateDoc(doc(db, "fam", famId), {
+          updateDoc(doc(db, "fam", famId.trim()), {
             users: users,
           });
         }
       })
     );
+    close();
   };
 
   const delDocument = async (id) => {
-    setWindow(1);
+    setSortedExp((prev) => prev.filter((e) => e.id !== id));
+    close();
     await deleteDoc(doc(db, "expenses", id));
   };
 
@@ -44,28 +57,28 @@ function Message({ message, close, isInput, delDocId, title, setWindow }) {
           <h2>{title}</h2>
           <button onClick={() => close()}>X</button>
         </div>
+        <div className="window-bottom">
+          <p>{message}</p>
+          {isInput ? (
+            <div>
+              <input
+                type="text"
+                name="inp"
+                id="inp"
+                onChange={(e) => setFamId(e.target.value)}
+                value={famId}
+                autoFocus
+              />
+              <button onClick={() => joinFamily(famId)}>Dołącz</button>
+            </div>
+          ) : (
+            ""
+          )}
 
-        <p>{message}</p>
-        {isInput ? (
-          <div>
-            <input
-              type="text"
-              name="inp"
-              id="inp"
-              onChange={(e) => setFamId(e.target.value)}
-              value={famId}
-            />
-            <button onClick={() => joinFamily(famId)}>Dołącz</button>
-          </div>
-        ) : (
-          ""
-        )}
-
-        {delDocId ? (
-          <button onClick={() => delDocument(delDocId)}>Usuń</button>
-        ) : (
-          ""
-        )}
+          {delDocId && (
+            <button onClick={() => delDocument(delDocId)}>Usuń</button>
+          )}
+        </div>
       </div>
     </div>
   );

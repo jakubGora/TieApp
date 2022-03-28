@@ -4,10 +4,21 @@ import "./style/History.css";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import Message from "../Message/Message";
+import delIco from "../../img/delete.png";
 function History({ expenses, window, setWindow }) {
   const user = getAuth().currentUser;
   const [mess, setMess] = useState(false);
   const [id, setId] = useState();
+
+  const [sortedExp, setSortedExp] = useState(
+    expenses
+      .filter((a) => a.time)
+      .sort(
+        (c, b) =>
+          new Date(b.time.seconds * 1000 + b.time.nanoseconds / 1000000) -
+          new Date(c.time.seconds * 1000 + c.time.nanoseconds / 1000000)
+      )
+  );
 
   return (
     <div className="History">
@@ -19,6 +30,7 @@ function History({ expenses, window, setWindow }) {
           isInput={false}
           delDocId={id}
           setWindow={setWindow}
+          setSortedExp={setSortedExp}
         />
       ) : (
         ""
@@ -43,7 +55,7 @@ function History({ expenses, window, setWindow }) {
         </div>
         <div className="scroll">
           {" "}
-          {expenses.map((elem, i) =>
+          {sortedExp?.map((elem, i) =>
             elem.email == user.email && elem.category ? (
               <div key={i} className="elem">
                 <div className="box">
@@ -66,7 +78,7 @@ function History({ expenses, window, setWindow }) {
                       setMess(true);
                     }}
                   >
-                    X
+                    <img src={delIco} alt="del" />
                   </button>
                 </div>
               </div>

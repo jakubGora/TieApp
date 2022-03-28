@@ -6,8 +6,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(73, 73, 73, 0.459);
-  display: flex;
+  display: flex !important;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -18,7 +17,6 @@
 
 .Message .window {
   width: 90vw;
-  padding: 2rem;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -64,10 +62,10 @@
 
 .Message .window .window-top button {
   border: none;
-  padding: 0.3rem;
+  padding: 0.5rem;
   font-size: 1.5rem;
+  margin-top: 0 !important;
   width: 2.5rem;
-  height: 2.5rem;
   font-weight: 600;
   -ms-flex-item-align: end;
       align-self: flex-end;
@@ -79,21 +77,47 @@
   color: white;
 }
 
-.Message .window p {
+.Message .window .window-bottom {
+  width: 100%;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Message .window .window-bottom p {
   font-size: 1.5rem;
   text-align: center;
   color: black;
 }
 
-.Message .window input,
-.Message .window button {
+.Message .window .window-bottom input,
+.Message .window .window-bottom button {
+  border: none;
   padding: 0.5rem;
-  font-size: 1.3rem;
-  border: 1px solid black;
-  border-radius: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.Message .window button {
-  border-left: 0;
+.Message .window .window-bottom input {
+  font-weight: 200;
+  border: 1px solid black;
+  background-color: #eeeeee;
+}
+
+.Message .window .window-bottom button:hover {
+  background-color: red;
+  cursor: pointer;
+  color: white;
 }
 /*# sourceMappingURL=Message.css.map */

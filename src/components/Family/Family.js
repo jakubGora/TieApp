@@ -28,7 +28,11 @@ function Family({ fam, setFam, famId, setFamId }) {
   };
 
   const leaveFam = async () => {
-    await deleteDoc(doc(db, "fam", famId));
+    if (fam.length > 1)
+      await updateDoc(doc(db, "fam", famId), {
+        users: fam.filter((e) => e !== user.email),
+      });
+    else await deleteDoc(doc(db, "fam", famId));
     setFam([]);
     setFamId(null);
   };
@@ -53,6 +57,9 @@ function Family({ fam, setFam, famId, setFamId }) {
     );
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, []);
   return (
     <div className="Family">
       {" "}
@@ -71,7 +78,9 @@ function Family({ fam, setFam, famId, setFamId }) {
         {fam.length > 0 ? <h2>Członkowie:</h2> : ""}
         {fam.map((q, n) => (
           <div className="list-elem" key={n}>
-            <p>{n + 1 + ". \t" + q}</p>
+            <p>
+              {n + 1}. &nbsp;{q}
+            </p>
           </div>
         ))}
 

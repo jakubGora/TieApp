@@ -4,19 +4,19 @@ import { f } from "@fortawesome/react-fontawesome";
 import smokingIco from "../../img/smoking (1).png";
 import healthIco from "../../img/healthcare.png";
 import dotsIco from "../../img/dots.png";
-import cart from "../../img/shopping-cart-solid.svg";
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { setDoc, collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 function AddExpense() {
   const [window, setWindow] = useState(0);
   const [category, setCategory] = useState();
-  const [sum, setSum] = useState(null);
+  const [sum, setSum] = useState("");
   const refInput = useRef(null);
   const auth = getAuth();
   const user = auth.currentUser;
   const addExp = async () => {
-    const docRef = await addDoc(collection(db, "expenses"), {
+    await addDoc(collection(db, "expenses"), {
       category: category,
       sum: sum,
       email: user.email,
@@ -25,9 +25,8 @@ function AddExpense() {
   };
 
   const dofusOnLoad = () => {
-    // `current` wskazuje na zamontowany element kontrolki formularza
     refInput.current.focus();
-    refInput.current.value = null;
+    refInput.current.value = 0;
   };
 
   return (
@@ -74,7 +73,7 @@ function AddExpense() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-lightbulb-fill"
+                className="bi bi-lightbulb-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
@@ -141,7 +140,7 @@ function AddExpense() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-house-door-fill"
+                className="bi bi-house-door-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
@@ -230,7 +229,7 @@ function AddExpense() {
               onClick={() => {
                 addExp();
                 setWindow(0);
-                setSum(null);
+                setSum("");
               }}
             >
               Dodaj

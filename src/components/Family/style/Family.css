@@ -41,15 +41,18 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   overflow-y: scroll;
   padding-top: 1rem;
 }
@@ -85,19 +88,26 @@
   font-size: 1.5rem;
 }
 
+.Family .family-list .list-elem:nth-of-type(2) {
+  border-top: none;
+}
+
 .Family .family-list .list-elem {
-  background-color: rgba(141, 141, 141, 0.445);
+  background-color: rgba(0, 0, 0, 0.041);
   font-size: 0.8rem;
-  margin: 1rem;
+  max-width: 35rem;
+  padding: 1rem;
   width: 90vw;
   color: white;
-  padding: 1rem;
+  padding-left: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-shadow: 0 8px 4px -5px rgba(0, 0, 0, 0.541);
+          box-shadow: 0 8px 4px -5px rgba(0, 0, 0, 0.541);
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -125,6 +135,17 @@
       -ms-flex-pack: center;
           justify-content: center;
   color: white;
+}
+
+.Family .family-list button {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: none;
+}
+
+.Family .family-list button:hover {
+  -webkit-filter: brightness(80%);
+          filter: brightness(80%);
 }
 
 .Family .family-list .notCreated {

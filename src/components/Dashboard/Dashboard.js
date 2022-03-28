@@ -6,11 +6,7 @@ import { getAuth } from "firebase/auth";
 function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
   const [userSum, setUserSum] = useState(0);
   const [sum, setSum] = useState(0);
-  const [monthsA, setMonthsA] = useState(
-    months.sort(
-      (c, b) => new Date(b.year, b.month, 1) - new Date(c.year, c.month, 1)
-    )
-  );
+
   const [cat, setCat] = useState();
   const [cats, setCats] = useState([]);
   const [currentMonth, setCurrentM] = useState({
@@ -85,6 +81,7 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
     setUserSum(0);
 
     setMonths([]);
+
     expenses.map((ex) => {
       if (ex.sum) {
         let monthA = getDateFirestore(ex.time).getMonth();
@@ -100,7 +97,8 @@ function Dashboard({ expenses, window, setWindow, fam, months, setMonths }) {
             year + 1900 === currentMonth?.year) ||
           !currentMonth
         ) {
-          if (ex.email == user.email) setUserSum((userSum) => userSum + ex.sum);
+          if (ex.email === user.email)
+            setUserSum((userSum) => userSum + ex.sum);
           setSum((sum) => sum + ex.sum);
         }
       }

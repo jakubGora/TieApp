@@ -84,9 +84,8 @@ function App() {
       }
     });
 
-    setExpenses([]);
-
-    onSnapshot(collection(db, "expenses"), (snapshot) =>
+    onSnapshot(collection(db, "expenses"), (snapshot) => {
+      setExpenses([]);
       snapshot.docs.map((doc) => {
         if (fam.includes(doc.data().email)) {
           setExpenses((expenses) => [
@@ -100,13 +99,13 @@ function App() {
             },
           ]);
         }
-      })
-    );
+      });
+    });
 
     if (fam.length != 0 && !isSignIn) {
       setWindow(0);
     }
-  }, [window, db, auth]);
+  }, [window, auth]);
 
   return (
     <div className="App">

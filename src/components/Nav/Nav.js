@@ -42,7 +42,7 @@ function Nav({ window, setWindow }) {
         <p>History</p>
       </div>
       <div
-        className={`button ${window === 4 ? "active" : ""}`}
+        className={`button ${window === 4 || window === 8 ? "active" : ""}`}
         onClick={() => setWindow(4)}
       >
         <img src={user} alt="home" />
