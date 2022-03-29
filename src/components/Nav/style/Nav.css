@@ -19,6 +19,7 @@
   z-index: 1000;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .Nav .button {
@@ -105,23 +106,23 @@
     border-bottom-left-radius: 0rem;
     border-bottom-right-radius: 0rem;
     padding-top: 0;
-    height: 55.76px;
-    max-height: 55.76px;
-    min-height: 55.76px;
+    height: 50px;
+    max-height: 50px;
+    min-height: 50px;
     -webkit-box-shadow: 0rem -2rem 1rem #110042;
             box-shadow: 0rem -2rem 1rem #110042;
   }
   .Nav .indicator {
     position: absolute;
     z-index: 1001;
-    width: 4rem;
-    height: 4rem;
-    margin-left: calc((20vw - 4rem) / 2);
-    margin-right: calc((20vw - 4rem) / 2);
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-left: calc((20vw - 3.2rem) / 2);
+    margin-right: calc((20vw - 3.2rem) / 2);
     margin-bottom: 0;
     margin-top: 0;
     border-radius: 50%;
-    top: calc(100vh - 55.76px - 2.2rem);
+    top: calc(100vh - 50px - 2rem);
     left: 0;
     pointer-events: none;
     background-color: #6c3bff;
@@ -162,7 +163,7 @@
             filter: invert(0%);
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    width: 1.8rem;
+    width: 1.4rem;
   }
   .Nav .button p {
     height: 0;
@@ -200,7 +201,7 @@
     -webkit-transform: scaleY(100%) translateY(-50%);
             transform: scaleY(100%) translateY(-50%);
     height: 100%;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     opacity: 1;
     -webkit-transition: 0.5s;
     transition: 0.5s;
