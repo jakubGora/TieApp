@@ -12,6 +12,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(219, 219, 219);
 }
+body {
+  background: linear-gradient(348deg, #110042 0%, #6c3bff 100%);
+  height: 100vh;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

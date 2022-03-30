@@ -17,6 +17,7 @@
 
 .Message .window {
   width: 90vw;
+  max-width: 40rem;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;

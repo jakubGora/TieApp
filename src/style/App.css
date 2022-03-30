@@ -3,19 +3,15 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  /* Currently supported:               */
-  margin-top: 2rem;
-  height: 90vh;
-  width: 50vmin;
+  height: 100vh;
+  width: 100vw;
   background: #6c3bff;
   background: linear-gradient(348deg, #110042 0%, #6c3bff 100%);
-  -webkit-box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);
-          box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);
-  border-radius: 2rem;
-  border: 1rem solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-shadow: 1rem 3rem 3rem rgba(0, 0, 0, 0.747);
+          box-shadow: 1rem 3rem 3rem rgba(0, 0, 0, 0.747);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;

@@ -4,6 +4,7 @@
   flex-grow: 1;
   background-color: rgba(241, 241, 241, 0);
   width: 100%;
+  max-width: 900px;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: flex;
@@ -35,5 +36,10 @@
       width: 90vw;
       max-width: 420px;
     }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .Statistics {
+    max-width: 100vw;
   }
 }

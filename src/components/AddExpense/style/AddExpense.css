@@ -3,6 +3,7 @@
       -ms-flex-positive: 1;
           flex-grow: 1;
   width: 100%;
+  max-width: 900px;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: -webkit-box;
@@ -163,6 +164,7 @@
   .AddExpense {
     border-top-left-radius: 0rem;
     border-top-right-radius: 0rem;
+    max-width: 100vw;
   }
   .AddExpense .infoList {
     overflow-y: scroll;

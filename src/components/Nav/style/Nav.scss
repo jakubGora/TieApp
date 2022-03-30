@@ -2,19 +2,21 @@
 
 .Nav {
   display: flex;
-  width: 100%;
+
   background-color: rgb(255, 255, 255);
   margin-top: 1rem;
   height: 6vh;
   min-height: 55.22px;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  width: 50vmax;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   flex-direction: row;
   align-items: center;
   z-index: 1000;
   justify-content: space-around;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   .button {
     padding-top: 0.5rem;
     height: 100%;
@@ -64,19 +66,79 @@
   .indicator {
     position: absolute;
     z-index: 1001;
-    width: 4rem;
-    height: 4rem;
-
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-left: calc((20vw - 3.2rem) / 2);
+    margin-right: calc((20vw - 3.2rem) / 2);
+    margin-bottom: 0;
+    margin-top: 0;
     border-radius: 50%;
-
-    left: 50%;
-    top: calc(90vh + 1rem - 5.5vh);
-    transform: translateX(-50%) translateY(-50%);
+    top: calc(100vh - 7vh - 1.5rem);
+    left: 0;
     pointer-events: none;
     background-color: $base-color;
     transition: 0.5s;
+    border: 5px solid $base-color2;
+  }
+
+  .button {
+    background-color: rgba(240, 248, 255, 0);
+    img {
+      filter: invert(0%);
+      transition: 0.5s;
+      width: 1.4rem;
+    }
+    p {
+      height: 0;
+      transform: scaleY(0%);
+      opacity: 0;
+    }
+  }
+  .button:nth-of-type(3) {
+    width: 20vw;
+    img {
+      transform: translateY(0rem);
+      filter: invert(0%);
+      transition: 0.5s;
+    }
+    p {
+      height: 0;
+      transform: scaleY(0%);
+      opacity: 0;
+    }
+  }
+  .button.active {
+    background-color: rgba(240, 248, 255, 0);
+    img {
+      transform: translateY(-1.5rem);
+      filter: invert(100%);
+    }
+    p {
+      transform: scaleY(100%) translateY(-50%);
+      height: 100%;
+      font-size: 0.7rem;
+      opacity: 1;
+      transition: 0.5s;
+    }
+  }
+
+  .button:nth-of-type(1).active ~ .indicator {
+    transform: translateX(calc(20vmax));
+  }
+  .button:nth-of-type(2).active ~ .indicator {
+    transform: translateX(calc(30vmax));
+  }
+  .button:nth-of-type(3).active ~ .indicator {
+    transform: translateX(calc(40vmax));
+  }
+  .button:nth-of-type(4).active ~ .indicator {
+    transform: translateX(calc(50vmax));
+  }
+  .button:nth-of-type(5).active ~ .indicator {
+    transform: translateX(calc(60vmax));
   }
 }
+
 @media only screen and (max-width: 900px) {
   .Nav {
     border-bottom-left-radius: 0rem;
@@ -85,6 +147,7 @@
     height: 50px;
     max-height: 50px;
     min-height: 50px;
+    width: 100vw;
     box-shadow: 0rem -2rem 1rem $base-color2;
     .indicator {
       position: absolute;

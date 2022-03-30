@@ -4,6 +4,7 @@
           flex-grow: 1;
   background-color: rgba(241, 241, 241, 0);
   width: 100%;
+  max-width: 900px;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: -webkit-box;
@@ -125,5 +126,11 @@
 
 .User .user-info div button:last-of-type:hover {
   color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .User {
+    max-width: 100vw;
+  }
 }
 /*# sourceMappingURL=User.css.map */

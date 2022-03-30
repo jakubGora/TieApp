@@ -2,16 +2,13 @@
 $base-color: #6c3bff;
 $base-color2: #110042;
 .App {
-  user-select: none; /* Currently supported:               */
-  margin-top: 2rem;
-  height: 90vh;
-  width: 50vmin;
+  user-select: none;
+  height: 100vh;
+  width: 100vw;
   background: $base-color;
   background: linear-gradient(348deg, #110042 0%, #6c3bff 100%);
-  box-shadow: 1rem 3rem 3rem rgba(131, 131, 131, 0.747);
-  border-radius: 2rem;
-  border: 1rem solid black;
   display: flex;
+  box-shadow: 1rem 3rem 3rem rgba(0, 0, 0, 0.747);
   flex-direction: column;
   align-items: center;
   justify-content: end;

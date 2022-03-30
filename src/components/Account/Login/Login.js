@@ -4,7 +4,7 @@ import passImg from "../../../img/padlock.png";
 import fbImg from "../../../img/facebook-social-logo.png";
 import "./style/Login.css";
 import firebase, { fireAuth } from "../../../firebase";
-import { getAuth, RecaptchaVerifier } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 import StyleFirebaseUi from "react-firebaseui/StyledFirebaseAuth";
 import logo from "../../../img/logoTieApp.png";
@@ -13,6 +13,9 @@ function Login({ window, setWindow }) {
     if (getAuth().currentUser) setWindow(4);
   }, [getAuth().currentUser]);
 
+  useEffect(() => {
+    console.log("asd");
+  }, []);
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -31,11 +34,17 @@ function Login({ window, setWindow }) {
         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
         signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
       },
+      {
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+
+        defaultCountry: "PL",
+        whitelistedCountries: ["PL", "+48"],
+      },
     ],
     // Terms of service url.
-    tosUrl: "https://jakubgora.pl/privacy",
+    tosUrl: "https://jakubgora.pl/tieappprivacy",
     // Privacy policy url.
-    privacyPolicyUrl: "https://jakubgora.pl/privacy",
+    privacyPolicyUrl: "https://jakubgora.pl/tieappprivacy",
   };
 
   return (
